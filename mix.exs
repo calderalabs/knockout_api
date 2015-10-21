@@ -19,7 +19,7 @@ defmodule KnockoutApi.Mixfile do
   def application do
     [mod: {KnockoutApi, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :gosugamers_parser]]
   end
 
   # Specifies which paths to compile per environment.
@@ -35,7 +35,8 @@ defmodule KnockoutApi.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:gosugamers_parser, path: "../gosugamers_parser"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
