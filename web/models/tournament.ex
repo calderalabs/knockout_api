@@ -12,7 +12,7 @@ defmodule KnockoutApi.Tournament do
     timestamps
   end
 
-  @required_fields ~w(name game_id)
+  @required_fields ~w(name)
   @optional_fields ~w()
 
   def fetch_tournaments_from_gosugamers do
@@ -34,6 +34,7 @@ defmodule KnockoutApi.Tournament do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> assoc_constraint(:game)
     |> unique_constraint(:name)
   end
 end

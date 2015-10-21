@@ -9,6 +9,8 @@
   "hound": {:git, "https://github.com/HashNuke/hound.git", "25501228b71ae058b3bce31cb0ebefe865d05026", []},
   "httpoison": {:hex, :httpoison, "0.7.4"},
   "idna": {:hex, :idna, "1.0.2"},
+  "inflex": {:hex, :inflex, "1.5.0"},
+  "ja_serializer": {:hex, :ja_serializer, "0.4.0"},
   "mochiweb": {:hex, :mochiweb, "2.12.2"},
   "phoenix": {:hex, :phoenix, "1.0.3"},
   "phoenix_ecto": {:hex, :phoenix_ecto, "1.2.0"},
