@@ -1,5 +1,6 @@
 defmodule KnockoutApi.Game do
   alias KnockoutApi.Game
+  alias KnockoutApi.Repo
   use KnockoutApi.Web, :model
 
   schema "games" do

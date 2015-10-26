@@ -17,10 +17,10 @@ defmodule KnockoutApi.Tournament do
 
   def fetch_tournaments_from_gosugamers do
     GosugamersParser.Server.get_tournaments
-    |> Enum.map(&create_tournament/1)
+    |> Enum.map(&create/1)
   end
 
-  defp create_tournament(tournament_params) do
+  def create(tournament_params) do
     {:ok, game} = Game.find_or_create_by_name(tournament_params.game)
     Repo.insert(Tournament.changeset(%Tournament{}, %{ name: tournament_params.name, game_id: game.id }))
   end
