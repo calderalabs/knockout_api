@@ -2,7 +2,7 @@ defmodule KnockoutApi.PageControllerTest do
   alias KnockoutApi.Tournament
   use KnockoutApi.ConnCase
 
-  test "GET /" do
+  test "GET /tournaments" do
     Tournament.create(%{ game: "dota2", name: "Test Tournament" })
     body = conn()
            |> put_req_header("accept", "application/vnd.api+json")
