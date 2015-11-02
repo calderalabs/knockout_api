@@ -28,8 +28,8 @@ config :phoenix, :generators,
   migration: true,
   binary_id: false
 
-config :hound, driver: "phantomjs", http: [recv_timeout: :infinity, timeout: :infinity]
-
 config :plug, :mimes, %{
   "application/vnd.api+json" => ["json-api"]
 }
+
+import_config "secret.exs"

@@ -12,17 +12,32 @@ defmodule KnockoutApi.Tournament do
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(name game_id)
   @optional_fields ~w()
 
   def fetch_tournaments_from_gosugamers do
-    GosugamersParser.Server.get_tournaments
+    kimono_apis = [
+      %{ game: Game.find_or_create_by_name("Hearthstone"), id: "bpr1x8ms" },
+      %{ game: Game.find_or_create_by_name("Dota 2"), id: "3icn6gf2" }
+    ] |> Enum.each(&fetch_tournaments_from_kimono/1)
+  end
+
+  defp fetch_tournaments_from_kimono(api) do
+    game_url = "https://www.kimonolabs.com/api/#{api.id}?apikey=#{Application.get_env(:knockout_api, :kimono_api_key)}"
+    {:ok, %HTTPoison.Response{status_code: 200, body: body}} = HTTPoison.get(game_url)
+    all = fn :get, data, next -> Enum.map(data, next) end
+
+    body
+    |> Poison.decode!
+    |> get_in(["results", "collection1", all, "tournament_title", "text"])
+    |> Enum.map(&(%{ game: api.game, name: &1 }))
     |> Enum.map(&create/1)
   end
 
-  def create(tournament_params) do
-    {:ok, game} = Game.find_or_create_by_name(tournament_params.game)
-    Repo.insert(Tournament.changeset(%Tournament{}, %{ name: tournament_params.name, game_id: game.id }))
+  def create(tournament) do
+    Repo.insert(Tournament.changeset(%Tournament{}, %{
+      name: tournament.name, game_id: tournament.game.id
+    }))
   end
 
   @doc """
@@ -34,7 +49,7 @@ defmodule KnockoutApi.Tournament do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> assoc_constraint(:game)
+    |> foreign_key_constraint(:game_id)
     |> unique_constraint(:name)
   end
 end

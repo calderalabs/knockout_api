@@ -19,7 +19,7 @@ defmodule KnockoutApi.Mixfile do
   def application do
     [mod: {KnockoutApi, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex, :gosugamers_parser]]
+                    :phoenix_ecto, :postgrex, :httpoison]]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,8 +37,8 @@ defmodule KnockoutApi.Mixfile do
       {:phoenix_html, "~> 2.1"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:cowboy, "~> 1.0"},
-      {:gosugamers_parser, path: "../gosugamers_parser"},
-      {:ja_serializer, "~> 0.4.0"}
+      {:ja_serializer, "~> 0.4.0"},
+      {:httpoison, "~> 0.7.2"}
     ]
   end
 

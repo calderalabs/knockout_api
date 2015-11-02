@@ -14,10 +14,12 @@ defmodule KnockoutApi.Game do
   @optional_fields ~w()
 
   def find_or_create_by_name(name) do
-    case Repo.get_by(Game, name: name) do
+    {:ok, game} = case Repo.get_by(Game, name: name) do
       nil -> Repo.insert(Game.changeset(%Game{}, %{ name: name }))
       game -> {:ok, game}
     end
+
+    game
   end
 
   @doc """
