@@ -11,6 +11,6 @@ defmodule KnockoutApi.TournamentsControllerTest do
            |> json_response(200)
 
     assert Enum.at(body["data"], 0)["attributes"]["name"] == "Test Tournament"
-    assert Enum.at(body["data"], 0)["attributes"]["game_id"] == game.id
+    assert Enum.at(body["data"], 0)["attributes"]["game-id"] == game.id
   end
 end
