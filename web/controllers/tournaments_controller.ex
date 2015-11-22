@@ -3,6 +3,6 @@ defmodule KnockoutApi.TournamentsController do
   use KnockoutApi.Web, :controller
 
   def index(conn, _params) do
-    render conn, model: KnockoutApi.Tournament |> Repo.all
+    render conn, model: KnockoutApi.Tournament |> Repo.all |> Repo.preload(:game)
   end
 end
