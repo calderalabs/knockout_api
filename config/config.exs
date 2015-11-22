@@ -31,5 +31,3 @@ config :phoenix, :generators,
 config :plug, :mimes, %{
   "application/vnd.api+json" => ["json-api"]
 }
-
-import_config "secret.exs"
