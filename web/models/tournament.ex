@@ -8,6 +8,7 @@ defmodule KnockoutApi.Tournament do
     field :name, :string
     field :start_at, Ecto.DateTime
     field :end_at, Ecto.DateTime
+    field :liquipedia_id, :string
     belongs_to :game, KnockoutApi.Game
     has_many :match_groups, KnockoutApi.MatchGroup
     has_many :teams, KnockoutApi.Team
@@ -16,7 +17,7 @@ defmodule KnockoutApi.Tournament do
   end
 
   @required_fields ~w(name game_id)
-  @optional_fields ~w(start_at end_at)
+  @optional_fields ~w(start_at end_at liquipedia_id)
 
   def create(tournament) do
     Repo.insert(Tournament.changeset(%Tournament{}, %{

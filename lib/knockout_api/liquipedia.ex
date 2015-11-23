@@ -17,8 +17,8 @@ defmodule Liquipedia do
     } |> build_params
   end
 
-  defp build_params(params, acc \\ []) do
-    Enum.reduce(params, acc, fn ({key, value}, acc) ->
+  defp build_params(params) do
+    Enum.reduce(params, [], fn ({key, value}, acc) ->
       case value do
         x when is_list(x) -> acc ++ ["#{key}=#{Enum.join(x, "|")}"]
         x -> acc ++ ["#{key}=#{x}"]
@@ -43,6 +43,10 @@ defmodule Liquipedia do
       },
       "Has_name" => %{
         "key" => "name",
+        "value_transform" => &(&1)
+      },
+      "Has_id" => %{
+        "key" => "liquipedia_id",
         "value_transform" => &(&1)
       }
     }
