@@ -3,11 +3,17 @@ defmodule Liquipedia do
   @endpoint "api.php"
 
   def fetch_tournaments(game) do
-    %HTTPoison.Response{ body: body } = HTTPoison.get!(url(game))
-    body |> get_results |> normalize_results
+    case HTTPoison.get(url_for(game)) do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        {:ok, body |> get_results |> normalize_results}
+      {:ok, %HTTPoison.Response{status_code: 404}} ->
+        {:error, %{reason: "Not found"}}
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        {:error, %{reason: reason}}
+    end
   end
 
-  defp url(game) do
+  defp url_for(game) do
     "#{@base_url}/#{game}/#{@endpoint}?#{query}"
   end
 
