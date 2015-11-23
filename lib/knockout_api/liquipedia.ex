@@ -23,7 +23,7 @@ defmodule Liquipedia do
         x when is_list(x) -> acc ++ ["#{key}=#{Enum.join(x, "|")}"]
         x -> acc ++ ["#{key}=#{x}"]
       end
-    end) |> List.flatten |> Enum.join("&")
+    end) |> Enum.join("&")
   end
 
   def fetch_tournaments do
