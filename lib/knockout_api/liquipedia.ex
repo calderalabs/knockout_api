@@ -8,26 +8,29 @@ defmodule Liquipedia do
   end
 
   defp url(game) do
-    "#{@base_url}/#{game}/#{@endpoint}?#{params}"
+    "#{@base_url}/#{game}/#{@endpoint}?#{query}"
   end
 
-  defp params do
+  defp query do
     %{
       "action" => "askargs",
       "conditions" => "Category:Tournaments",
       "format" => "json",
       "parameters" => ["sort=Has_start_date", "order=desc", "offset=0", "limit=20"],
       "printouts" => Dict.keys(tournaments_transform_map)
-    } |> build_params
+    } |> build_query
   end
 
-  defp build_params(params) do
-    Enum.reduce(params, [], fn ({key, value}, acc) ->
-      case value do
-        x when is_list(x) -> acc ++ ["#{key}=#{Enum.join(x, "|")}"]
-        x -> acc ++ ["#{key}=#{x}"]
-      end
-    end) |> Enum.join("&")
+  defp build_query(query) do
+    query
+      |> Enum.to_list
+      |> Enum.map(fn({key, value}) ->
+          case value do
+            x when is_list(x) -> "#{key}=#{Enum.join(x, "|")}"
+            x -> "#{key}=#{x}"
+          end
+        end)
+      |> Enum.join("&")
   end
 
   defp tournaments_transform_map do
@@ -53,35 +56,42 @@ defmodule Liquipedia do
       |> get_in(~w(query results))
       |> Enum.map(fn ({id, hash}) ->
         Dict.take(hash["printouts"], Dict.keys(tournaments_transform_map))
-        |> Dict.put("liquipedia_id", id)
+        |> Dict.put("liquipedia_id", [id])
       end)
   end
 
+  defp epoch_datetime do
+    {{1970, 1, 1}, {0, 0, 0}}
+  end
+
+  defp epoch_seconds do
+    :calendar.datetime_to_gregorian_seconds(epoch_datetime)
+  end
+
   defp convert_unix_timestamp(string) do
-    epoch = {{1970, 1, 1}, {0, 0, 0}}
-    offset = :calendar.datetime_to_gregorian_seconds(epoch)
     {uts, _} = Integer.parse(string)
-    :calendar.gregorian_seconds_to_datetime(uts + offset)
+    :calendar.gregorian_seconds_to_datetime(uts + epoch_seconds)
   end
 
   defp normalize_results(results) do
     Enum.map(results, fn(result) ->
       Enum.reduce(result, %{}, fn({key, value}, acc) ->
-        transform = case Dict.fetch(tournaments_transform_map, key) do
-          {:ok, dict} -> dict
-          :error -> %{ "key" => key, "value" => &(&1) }
-        end
-
-        new_key = transform["key"]
+        transform = get_transform_for(key)
 
         new_value = case value do
           [x] -> transform["value"].(x)
-          [] -> nil
-          x -> transform["value"].(x)
+          []  -> nil
         end
 
-        Dict.put(acc, new_key, new_value)
+        Dict.put(acc, transform["key"], new_value)
       end)
     end)
+  end
+
+  defp get_transform_for(key) do
+    case Dict.fetch(tournaments_transform_map, key) do
+      {:ok, dict} -> dict
+      :error      -> %{ "key" => key, "value" => &(&1) }
+    end
   end
 end
