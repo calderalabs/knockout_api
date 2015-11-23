@@ -70,12 +70,12 @@ defmodule Liquipedia do
 
   defp normalize_results(results) do
     Enum.map(results, fn(result) ->
-      Enum.reduce(result, %{}, fn({key, array}, acc) ->
+      Enum.reduce(result, %{}, fn({key, value}, acc) ->
         transform = Dict.fetch!(tournaments_transform_map, key)
         new_key = transform["key"]
 
-        new_value = case array do
-          [value] -> transform["value_transform"].(value)
+        new_value = case value do
+          [x] -> transform["value_transform"].(x)
           [] -> nil
         end
 
