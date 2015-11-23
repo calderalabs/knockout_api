@@ -77,7 +77,7 @@ defmodule Liquipedia do
         new_value = case value do
           [x] -> transform["value"].(x)
           [] -> nil
-          x -> x
+          x -> transform["value"].(x)
         end
 
         Dict.put(acc, new_key, new_value)
