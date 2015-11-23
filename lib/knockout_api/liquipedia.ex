@@ -34,15 +34,15 @@ defmodule Liquipedia do
     %{
       "Has_start_date" => %{
         "key" => "start_at",
-        "value_transform" => &convert_unix_timestamp/1
+        "value" => &convert_unix_timestamp/1
       },
       "Has_end_date" => %{
         "key" => "end_at",
-        "value_transform" => &convert_unix_timestamp/1
+        "value" => &convert_unix_timestamp/1
       },
       "Has_name" => %{
         "key" => "name",
-        "value_transform" => &(&1)
+        "value" => &(&1)
       }
     }
   end
@@ -69,13 +69,13 @@ defmodule Liquipedia do
       Enum.reduce(result, %{}, fn({key, value}, acc) ->
         transform = case Dict.fetch(tournaments_transform_map, key) do
           {:ok, dict} -> dict
-          :error -> %{ "key" => key, "value_transform" => &(&1) }
+          :error -> %{ "key" => key, "value" => &(&1) }
         end
 
         new_key = transform["key"]
 
         new_value = case value do
-          [x] -> transform["value_transform"].(x)
+          [x] -> transform["value"].(x)
           [] -> nil
           x -> x
         end
