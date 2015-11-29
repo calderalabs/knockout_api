@@ -39,7 +39,8 @@ defmodule KnockoutApi.Mixfile do
       {:cowboy, "~> 1.0"},
       {:ja_serializer, "~> 0.5.0"},
       {:httpoison, "~> 0.8.0"},
-      {:exvcr, "~> 0.6", only: :test}
+      {:exvcr, "~> 0.6", only: :test},
+      {:mock, "~> 0.1.1", only: :test}
     ]
   end
 

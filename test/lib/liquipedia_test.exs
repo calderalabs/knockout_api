@@ -8,7 +8,7 @@ defmodule KnockoutApi.LiquipediaTest do
 
   test "#fetch_tournaments fetches and parses tournaments from liquipedia" do
     use_cassette "dota2_tournaments" do
-      {:ok, tournaments} = KnockoutApi.Liquipedia.fetch_tournaments("dota2")
+      {:ok, tournaments} = KnockoutApi.Liquipedia.Client.fetch_tournaments("dota2")
 
       assert Enum.count(tournaments) == 20
       assert List.first(tournaments) == %{
