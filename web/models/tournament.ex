@@ -1,12 +1,14 @@
 defmodule KnockoutApi.Tournament do
   alias KnockoutApi.Tournament
   alias KnockoutApi.Repo
-  alias KnockoutApi.Game
 
   use KnockoutApi.Web, :model
 
   schema "tournaments" do
     field :name, :string
+    field :start_at, Ecto.DateTime
+    field :end_at, Ecto.DateTime
+    field :liquipedia_id, :string
     belongs_to :game, KnockoutApi.Game
     has_many :match_groups, KnockoutApi.MatchGroup
     has_many :teams, KnockoutApi.Team
@@ -15,11 +17,11 @@ defmodule KnockoutApi.Tournament do
   end
 
   @required_fields ~w(name game_id)
-  @optional_fields ~w()
+  @optional_fields ~w(start_at end_at liquipedia_id)
 
   def create(tournament) do
     Repo.insert(Tournament.changeset(%Tournament{}, %{
-      name: tournament.name, game_id: tournament.game.id
+      name: tournament.name, game_id: tournament.game_id
     }))
   end
 

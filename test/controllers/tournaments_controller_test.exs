@@ -4,7 +4,7 @@ defmodule KnockoutApi.TournamentsControllerTest do
 
   test "GET /tournaments" do
     game = KnockoutApi.Game.find_or_create_by_name("Dota 2")
-    Tournament.create(%{ game: game, name: "Test Tournament" })
+    Tournament.create(%{ game_id: game.id, name: "Test Tournament" })
     body = conn()
            |> put_req_header("accept", "application/vnd.api+json")
            |> get("/tournaments")
