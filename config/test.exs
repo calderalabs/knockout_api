@@ -6,6 +6,10 @@ config :knockout_api, KnockoutApi.Endpoint,
   http: [port: 4001],
   server: false
 
+config :knockout_api,
+  api_timeout_in_ms: 30_000,
+  api_rate_limit_in_ms: 500
+
 # Print only warnings and errors during test
 config :logger, level: :warn
 

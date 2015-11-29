@@ -14,6 +14,10 @@ config :knockout_api, KnockoutApi.Endpoint,
   pubsub: [name: KnockoutApi.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :knockout_api,
+  api_timeout_in_ms: 30_000,
+  api_rate_limit_in_ms: 5_000
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
