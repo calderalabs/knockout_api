@@ -1,4 +1,4 @@
-defmodule Liquipedia do
+defmodule KnockoutApi.Liquipedia do
   @base_url "http://wiki.teamliquid.net"
   @endpoint "api.php"
 
