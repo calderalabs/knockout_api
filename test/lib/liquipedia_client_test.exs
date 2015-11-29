@@ -1,4 +1,4 @@
-defmodule KnockoutApi.LiquipediaTest do
+defmodule KnockoutApi.LiquipediaClientTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
