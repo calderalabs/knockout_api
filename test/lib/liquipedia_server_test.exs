@@ -6,7 +6,7 @@ defmodule KnockoutApi.LiquipediaServerTest do
     KnockoutApi.Liquipedia.Server.fetch_tournaments("dota2")
   end
 
-  test "#fetch_tournaments respects API rate limit" do
+  test "#fetch_tournaments performs in less than the rate limit in ms" do
     with_mock KnockoutApi.Liquipedia.Client,
       [fetch_tournaments: fn(_) -> {:ok, %{game: "dota2"}} end] do
 
@@ -17,7 +17,7 @@ defmodule KnockoutApi.LiquipediaServerTest do
     end
   end
 
-  test "#fetch_tournaments respects API rate limit 2" do
+  test "#fetch_tournaments respects API rate limit" do
     with_mock KnockoutApi.Liquipedia.Client,
       [fetch_tournaments: fn(_) -> {:ok, %{game: "dota2"}} end] do
 
