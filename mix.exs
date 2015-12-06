@@ -19,7 +19,7 @@ defmodule KnockoutApi.Mixfile do
   def application do
     [mod: {KnockoutApi, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex, :httpoison]]
+                    :phoenix_ecto, :postgrex, :httpoison, :tzdata]]
   end
 
   # Specifies which paths to compile per environment.
@@ -40,7 +40,9 @@ defmodule KnockoutApi.Mixfile do
       {:ja_serializer, "~> 0.5.0"},
       {:httpoison, "~> 0.8.0"},
       {:exvcr, "~> 0.6", only: :test},
-      {:mock, "~> 0.1.1", only: :test}
+      {:mock, "~> 0.1.1", only: :test},
+      {:timex, "~> 0.19.2"},
+      {:tzdata, "== 0.1.8", override: true}
     ]
   end
 
