@@ -59,7 +59,7 @@ defmodule KnockoutApi.TheScore.Client do
         "value" => &extract_id_from_url/1
       },
       "team2_url" => %{
-        "key" => "team1_id",
+        "key" => "team2_id",
         "value" => &extract_id_from_url/1
       },
       "winning_team_url" => %{
