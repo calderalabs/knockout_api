@@ -13,7 +13,8 @@ defmodule KnockoutApi do
       worker(KnockoutApi.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(KnockoutApi.Worker, [arg1, arg2, arg3]),
-      supervisor(KnockoutApi.Liquipedia.Supervisor, [])
+      supervisor(KnockoutApi.Liquipedia.Supervisor, []),
+      supervisor(KnockoutApi.TheScore.Supervisor, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
