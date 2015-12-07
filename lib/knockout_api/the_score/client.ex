@@ -1,5 +1,9 @@
 defmodule KnockoutApi.TheScore.Client do
-  alias KnockoutApi.TheScore.Resources
+  alias KnockoutApi.TheScore.Resources.MatchGroup
+  alias KnockoutApi.TheScore.Resources.Match
+  alias KnockoutApi.TheScore.Resources.Team
+  alias KnockoutApi.TheScore.Resources.Tournament
+  alias KnockoutApi.TheScore.Transformations
 
   @base_url "http://esports-api.thescore.com"
   @endpoint "matches"
@@ -35,6 +39,10 @@ defmodule KnockoutApi.TheScore.Client do
   defp get_results(body) do
     body
       |> Poison.decode!
-      |> Resources.MatchGroup.transform
+      |> Transformations.transform(MatchGroup.transform_map, "matches", "match_group")
+      |> Transformations.transform(Match.transform_map, "games", "matches")
+      |> Transformations.transform(Team.transform_map, "teams", "teams")
+      |> Transformations.transform(Tournament.transform_map, "seasons", "tournaments")
+      |> Dict.drop(["competitions"])
   end
 end

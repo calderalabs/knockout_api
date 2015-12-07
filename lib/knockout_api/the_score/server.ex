@@ -2,8 +2,7 @@ defmodule KnockoutApi.TheScore.Server do
   use GenServer
 
   @timeout_in_ms Application.get_env(:knockout_api, :api_timeout_in_ms)
-  @rate_limit_in_ms Application.get_env(:knockout_api, :api_rate_limit_in_ms)
-
+  
   # Public API
 
   def start_link() do
@@ -18,7 +17,6 @@ defmodule KnockoutApi.TheScore.Server do
 
   def handle_call({:fetch_matches, game}, _from, state) do
     result = KnockoutApi.TheScore.Client.fetch_matches(game)
-    :timer.sleep(@rate_limit_in_ms)
     {:reply, result, state}
   end
 end

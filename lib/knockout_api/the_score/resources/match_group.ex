@@ -1,21 +1,12 @@
 defmodule KnockoutApi.TheScore.Resources.MatchGroup do
   import KnockoutApi.TheScore.Transformations
 
-  def transform(matches_response_body) do
-    match_groups = matches_response_body
-      |> Dict.get("matches")
-      |> Enum.map(fn (hash) ->
-        Dict.take(hash, Dict.keys(transform_map))
-      end)
-      |> normalize_results(transform_map)
-
-    matches_response_body
-      |> Dict.put("match_groups", match_groups)
-      |> Dict.drop(["matches"])
-  end
-
-  defp transform_map do
+  def transform_map do
     %{
+      "id" => %{
+        "key" => "id",
+        "value" => &(&1)
+      },
       "start_date" => %{
         "key" => "start_at",
         "value" => &convert_iso_string/1
