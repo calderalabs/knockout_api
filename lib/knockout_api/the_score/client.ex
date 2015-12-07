@@ -39,7 +39,7 @@ defmodule KnockoutApi.TheScore.Client do
   defp get_results(body) do
     body
       |> Poison.decode!
-      |> Transformations.transform(MatchGroup.transform_map, "matches", "match_group")
+      |> Transformations.transform(MatchGroup.transform_map, "matches", "match_groups")
       |> Transformations.transform(Match.transform_map, "games", "matches")
       |> Transformations.transform(Team.transform_map, "teams", "teams")
       |> Transformations.transform(Tournament.transform_map, "seasons", "tournaments")
