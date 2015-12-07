@@ -3,6 +3,7 @@ defmodule KnockoutApi.TournamentsController do
   use KnockoutApi.Web, :controller
 
   def index(conn, _params) do
-    render conn, model: KnockoutApi.Tournament |> Repo.all |> Repo.preload(:game)
+    {:ok, body} = KnockoutApi.TheScore.Server.fetch_matches("dota2")
+    json conn, body
   end
 end
