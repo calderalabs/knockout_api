@@ -16,7 +16,7 @@ defmodule KnockoutApi.TheScore.Resources.Match do
         "value" => &extract_id_from_url/1
       },
       "winning_team_url" => %{
-        "key" => "winning_team_id",
+        "key" => "winner_id",
         "value" => &extract_id_from_url/1
       }
     }

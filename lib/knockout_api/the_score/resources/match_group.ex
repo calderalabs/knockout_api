@@ -20,23 +20,23 @@ defmodule KnockoutApi.TheScore.Resources.MatchGroup do
         "value" => &(&1)
       },
       "team1_score" => %{
-        "key" => "team1_score",
+        "key" => "team_one_score",
         "value" => &(&1)
       },
       "team2_score" => %{
-        "key" => "team2_score",
+        "key" => "team_two_score",
         "value" => &(&1)
       },
       "team1_url" => %{
-        "key" => "team1_id",
+        "key" => "team_one_id",
         "value" => &extract_id_from_url/1
       },
       "team2_url" => %{
-        "key" => "team2_id",
+        "key" => "team_two_id",
         "value" => &extract_id_from_url/1
       },
       "winning_team_url" => %{
-        "key" => "winning_team_id",
+        "key" => "winner_id",
         "value" => &extract_id_from_url/1
       },
       "game_streams" => %{
