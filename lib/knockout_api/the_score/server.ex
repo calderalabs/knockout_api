@@ -10,14 +10,14 @@ defmodule KnockoutApi.TheScore.Server do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
-  def fetch_match_groups(game) do
-    GenServer.call(__MODULE__, {:fetch_match_groups, game}, @timeout_in_ms)
+  def fetch_matches(game) do
+    GenServer.call(__MODULE__, {:fetch_matches, game}, @timeout_in_ms)
   end
 
   # Private API
 
-  def handle_call({:fetch_match_groups, game}, _from, state) do
-    result = KnockoutApi.TheScore.Client.fetch_match_groups(game)
+  def handle_call({:fetch_matches, game}, _from, state) do
+    result = KnockoutApi.TheScore.Client.fetch_matches(game)
     :timer.sleep(@rate_limit_in_ms)
     {:reply, result, state}
   end
