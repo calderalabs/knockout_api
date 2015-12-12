@@ -9,5 +9,6 @@ defmodule KnockoutApi.Router do
     pipe_through :api
 
     get "/tournaments", TournamentsController, :index
+    get "/tournaments/:id", TournamentsController, :show
   end
 end
