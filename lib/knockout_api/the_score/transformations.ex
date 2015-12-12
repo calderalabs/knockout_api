@@ -29,7 +29,7 @@ defmodule KnockoutApi.TheScore.Transformations do
   def extract_id_from_url(url) do
     case url do
       nil -> nil
-      x -> x |> String.split("/") |> List.last
+      x -> x |> String.split("/") |> List.last |> String.to_integer
     end
   end
 
@@ -57,5 +57,21 @@ defmodule KnockoutApi.TheScore.Transformations do
     Dict.get(transform_map, key, %{
       "key" => key, "value" => &(&1)
     })
+  end
+
+  def merge(body, merge_into_key, merge_from_key, foreign_key) do
+    merge_from = body[merge_from_key]
+
+    result = Enum.map(body[merge_into_key], fn(merge_into_elem) ->
+      merge_from_elem = Enum.find(merge_from, fn (elem) ->
+        merge_into_elem[foreign_key] == elem["id"]
+      end)
+
+      merge_into_elem
+        |> Dict.merge(merge_from_elem, fn(_k, v1, v2) -> v1 end)
+        |> Dict.drop([foreign_key])
+    end)
+
+    body |> Dict.put(merge_into_key, result) |> Dict.drop([merge_from_key])
   end
 end

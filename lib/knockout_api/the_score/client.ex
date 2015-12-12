@@ -3,6 +3,7 @@ defmodule KnockoutApi.TheScore.Client do
   alias KnockoutApi.TheScore.Resources.Match
   alias KnockoutApi.TheScore.Resources.Team
   alias KnockoutApi.TheScore.Resources.Tournament
+  alias KnockoutApi.TheScore.Resources.Season
   alias KnockoutApi.TheScore.Transformations
 
   @base_url "http://esports-api.thescore.com"
@@ -43,6 +44,7 @@ defmodule KnockoutApi.TheScore.Client do
       |> Transformations.transform(Match.transform_map, "games", "matches")
       |> Transformations.transform(Team.transform_map, "teams", "teams")
       |> Transformations.transform(Tournament.transform_map, "competitions", "tournaments")
-      |> Dict.drop(["seasons"])
+      |> Transformations.transform(Season.transform_map, "seasons", "seasons")
+      |> Transformations.merge("tournaments", "seasons", "season_id")
   end
 end

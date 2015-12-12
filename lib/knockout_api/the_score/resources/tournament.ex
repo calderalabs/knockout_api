@@ -7,17 +7,9 @@ defmodule KnockoutApi.TheScore.Resources.Tournament do
         "key" => "id",
         "value" => &(&1)
       },
-      "start_date" => %{
-        "key" => "start_at",
-        "value" => &convert_iso_string/1
-      },
-      "end_date" => %{
-        "key" => "end_at",
-        "value" => &convert_iso_string/1
-      },
-      "short_name" => %{
-        "key" => "name",
-        "value" => &(&1)
+      "current_season_url" => %{
+        "key" => "season_id",
+        "value" => &extract_id_from_url/1
       }
     }
   end
