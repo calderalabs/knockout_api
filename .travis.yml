@@ -1,1 +1,4 @@
 language: elixir
+
+services:
+  - redis-server
