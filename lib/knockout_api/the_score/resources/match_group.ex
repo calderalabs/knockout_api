@@ -39,6 +39,10 @@ defmodule KnockoutApi.TheScore.Resources.MatchGroup do
         "key" => "winner_id",
         "value" => &extract_id_from_url/1
       },
+      "competition_url" => %{
+        "key" => "tournament_id",
+        "value" => &extract_id_from_url/1
+      },
       "game_streams" => %{
         "key" => "match_streams",
         "value" => fn (streams) ->
