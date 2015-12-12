@@ -6,4 +6,9 @@ defmodule KnockoutApi.TournamentsController do
     {:ok, body} = KnockoutApi.TheScore.Server.fetch_matches("dota2")
     json conn, body
   end
+
+  def show(conn, _params) do
+    {:ok, body} = KnockoutApi.TheScore.Server.fetch_matches("dota2")
+    json conn, body
+  end
 end

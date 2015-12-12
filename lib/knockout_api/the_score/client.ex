@@ -42,7 +42,7 @@ defmodule KnockoutApi.TheScore.Client do
       |> Transformations.transform(MatchGroup.transform_map, "matches", "match_groups")
       |> Transformations.transform(Match.transform_map, "games", "matches")
       |> Transformations.transform(Team.transform_map, "teams", "teams")
-      |> Transformations.transform(Tournament.transform_map, "seasons", "tournaments")
-      |> Dict.drop(["competitions"])
+      |> Transformations.transform(Tournament.transform_map, "competitions", "tournaments")
+      |> Dict.drop(["seasons"])
   end
 end
