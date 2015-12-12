@@ -1,6 +1,13 @@
 defmodule KnockoutApi.TheScore.Transformations do
   use Timex
 
+  defimpl Poison.Encoder, for: [DateTime] do
+    def encode(dt, _opts) do
+      {:ok, date} = DateFormat.format(dt, "{ISOz}")
+      <<?", date::binary, ?">>
+    end
+  end
+
   def transform(matches_response_body, transform_map, the_score_resource_key, knockout_resource_key) do
     match_groups = matches_response_body
       |> Dict.get(the_score_resource_key)
