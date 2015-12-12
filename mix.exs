@@ -42,7 +42,8 @@ defmodule KnockoutApi.Mixfile do
       {:exvcr, "~> 0.6", only: :test},
       {:mock, "~> 0.1.1", only: :test},
       {:timex, "~> 0.19.2"},
-      {:tzdata, "== 0.1.8", override: true}
+      {:tzdata, "== 0.1.8", override: true},
+      {:exredis, ">= 0.2.2"}
     ]
   end
 
