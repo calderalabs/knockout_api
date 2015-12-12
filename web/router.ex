@@ -3,7 +3,6 @@ defmodule KnockoutApi.Router do
 
   pipeline :api do
     plug :accepts, ["json-api"]
-    plug JaSerializer.ContentTypeNegotiation
   end
 
   scope "/", KnockoutApi do
