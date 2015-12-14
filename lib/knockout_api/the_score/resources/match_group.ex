@@ -49,7 +49,10 @@ defmodule KnockoutApi.TheScore.Resources.MatchGroup do
           vods
             |> Enum.map(fn (vod) ->
               Enum.map(vod["streams"], fn (sub_vod) ->
-                Dict.put(sub_vod, "label", "#{vod["game_label"]} - #{sub_vod["label"]}")
+                sub_vod
+                  |> Dict.put("label", "#{vod["game_label"]} - #{sub_vod["label"]}")
+                  |> rename_key("link", "url")
+                  |> rename_key("source", "type")
               end)
             end)
             |> List.flatten
