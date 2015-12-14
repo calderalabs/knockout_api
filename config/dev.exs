@@ -12,7 +12,8 @@ config :knockout_api, KnockoutApi.Endpoint,
   code_reloader: true,
   cache_static_lookup: false,
   check_origin: false,
-  watchers: []
+  watchers: [],
+  reloadable_paths: ["web", "lib"]
 
 # Watch static and templates for browser reloading.
 config :knockout_api, KnockoutApi.Endpoint,

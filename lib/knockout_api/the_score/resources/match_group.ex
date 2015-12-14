@@ -44,11 +44,15 @@ defmodule KnockoutApi.TheScore.Resources.MatchGroup do
         "value" => &extract_id_from_url/1
       },
       "game_streams" => %{
-        "key" => "match_streams",
-        "value" => fn (streams) ->
-          Enum.map(streams, fn (stream) ->
-            rename_key(stream, "game_label", "match_label")
-          end)
+        "key" => "vods",
+        "value" => fn (vods) ->
+          vods
+            |> Enum.map(fn (vod) ->
+              Enum.map(vod["streams"], fn (sub_vod) ->
+                Dict.put(sub_vod, "label", "#{vod["game_label"]} - #{sub_vod["label"]}")
+              end)
+            end)
+            |> List.flatten
         end
       }
     }
