@@ -21,7 +21,7 @@ defmodule KnockoutApi.TournamentsController do
       matches -> Poison.decode!(matches)
     end
 
-    Exredis.stop
+    Exredis.stop(client)
 
     body
   end

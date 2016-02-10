@@ -8,9 +8,10 @@ defmodule KnockoutApi.TheScore.Client do
 
   @base_url "http://esports-api.thescore.com"
   @endpoint "matches"
+  @timeout_in_ms Application.get_env(:knockout_api, :api_timeout_in_ms)
 
   def fetch_matches(game) do
-    case HTTPoison.get(url_for(game)) do
+    case HTTPoison.get(url_for(game), [], [timeout: @timeout_in_ms, recv_timeout: @timeout_in_ms]) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         {:ok, body |> get_results}
       {:ok, %HTTPoison.Response{status_code: 404}} ->
