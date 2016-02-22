@@ -13,6 +13,21 @@ defmodule KnockoutApi.TheScore.Client do
   @timeout_in_ms Application.get_env(:knockout_api, :api_timeout_in_ms)
 
   def fetch_matches(game) do
+    {:ok, client} = Exredis.start_link
+
+    body = case Exredis.Api.get(client, "dota2_the_score_matches") do
+      :undefined ->
+        {:ok, matches} = request_matches(game)
+        Exredis.Api.set(client, "dota2_the_score_matches", Poison.encode!(matches))
+        matches
+      matches -> Poison.decode!(matches)
+    end
+
+    Exredis.stop(client)
+    body
+  end
+
+  defp request_matches(game) do
     case HTTPoison.get(url_for(game), [], [timeout: @timeout_in_ms, recv_timeout: @timeout_in_ms]) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         {:ok, body |> get_results(game)}
