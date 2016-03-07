@@ -2,7 +2,7 @@ defmodule KnockoutApi.TheScore.Server do
   use GenServer
 
   @timeout_in_ms Application.get_env(:knockout_api, :api_timeout_in_ms)
-  
+
   # Public API
 
   def start_link() do

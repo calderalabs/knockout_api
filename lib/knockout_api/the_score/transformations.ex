@@ -71,11 +71,11 @@ defmodule KnockoutApi.TheScore.Transformations do
 
     result = Enum.map(body[merge_into_key], fn(merge_into_elem) ->
       merge_from_elem = Enum.find(merge_from, fn (elem) ->
-        merge_into_elem[foreign_key] == elem["id"]
+        merge_into_elem[foreign_key] == elem["the_score_id"]
       end)
 
       merge_into_elem
-        |> Dict.merge(merge_from_elem, fn(_k, v1, v2) -> v1 end)
+        |> Dict.merge(merge_from_elem, fn(_k, v1, _v2) -> v1 end)
         |> Dict.drop([foreign_key])
     end)
 

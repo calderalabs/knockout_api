@@ -5,11 +5,12 @@ defmodule KnockoutApi.Match do
     belongs_to :winner, KnockoutApi.Team
     belongs_to :match_group, KnockoutApi.MatchGroup
     field :number, :integer
+    field :the_score_id, :integer
 
     timestamps
   end
 
-  @required_fields ~w(match_group_id number)
+  @required_fields ~w(match_group_id number the_score_id)
   @optional_fields ~w(winner_id)
 
   @doc """
@@ -21,5 +22,6 @@ defmodule KnockoutApi.Match do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> unique_constraint(:the_score_id)
   end
 end

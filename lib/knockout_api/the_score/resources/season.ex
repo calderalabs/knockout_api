@@ -4,7 +4,7 @@ defmodule KnockoutApi.TheScore.Resources.Season do
   def transform_map do
     %{
       "id" => %{
-        "key" => "id",
+        "key" => "the_score_id",
         "value" => &(&1)
       },
       "start_date" => %{
