@@ -3,9 +3,8 @@ defmodule KnockoutApi.Repo.Migrations.CreateMatch do
 
   def change do
     create table(:matches) do
-      add :team_one_id, references(:teams)
-      add :team_two_id, references(:teams)
       add :winner_id, references(:teams)
+      add :number, :integer
       add :match_group_id, references(:match_groups)
 
       timestamps

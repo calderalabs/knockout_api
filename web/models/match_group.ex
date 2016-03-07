@@ -5,15 +5,17 @@ defmodule KnockoutApi.MatchGroup do
     belongs_to :tournament, KnockoutApi.Tournament
     belongs_to :team_one, KnockoutApi.Team
     belongs_to :team_two, KnockoutApi.Team
-    has_many :matches, KnockoutApi.Match
+    belongs_to :winner, KnockoutApi.Team
+    field :start_at, Ecto.DateTime
+    field :end_at, Ecto.DateTime
+    field :vods, :map
     field :best_of, :string
-    field :elimination, :boolean, default: false
 
     timestamps
   end
 
-  @required_fields ~w(tournament_id team_one_id team_two_id best_of elimination)
-  @optional_fields ~w()
+  @required_fields ~w(tournament_id team_one_id team_two_id best_of)
+  @optional_fields ~w(winner_id start_at end_at vods)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

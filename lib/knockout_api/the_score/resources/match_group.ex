@@ -19,14 +19,6 @@ defmodule KnockoutApi.TheScore.Resources.MatchGroup do
         "key" => "best_of",
         "value" => &(&1)
       },
-      "team1_score" => %{
-        "key" => "team_one_score",
-        "value" => &(&1)
-      },
-      "team2_score" => %{
-        "key" => "team_two_score",
-        "value" => &(&1)
-      },
       "team1_url" => %{
         "key" => "team_one_id",
         "value" => &extract_id_from_url/1

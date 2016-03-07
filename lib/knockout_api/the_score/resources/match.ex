@@ -8,7 +8,7 @@ defmodule KnockoutApi.TheScore.Resources.Match do
         "value" => &(&1)
       },
       "game_number" => %{
-        "key" => "match_number",
+        "key" => "number",
         "value" => &(&1)
       },
       "match_url" => %{

@@ -4,12 +4,10 @@ defmodule KnockoutApi.Repo.Migrations.CreateTournament do
   def change do
     create table(:tournaments) do
       add :name, :string
-      add :format, :string
-      add :game_id, references(:games)
+      add :start_at, :datetime
+      add :end_at, :datetime
 
       timestamps
     end
-
-    create unique_index(:tournaments, [:name])
   end
 end

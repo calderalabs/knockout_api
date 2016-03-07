@@ -2,15 +2,16 @@ defmodule KnockoutApi.Team do
   use KnockoutApi.Web, :model
 
   schema "teams" do
-    field :name, :string
-    belongs_to :reference, KnockoutApi.Team
-    has_many :players, KnockoutApi.Players
+    field :full_name, :string
+    field :short_name, :string
+    field :country, :string
+    field :logo, :map
 
     timestamps
   end
 
-  @required_fields ~w(name reference_id)
-  @optional_fields ~w()
+  @required_fields ~w(full_name short_name)
+  @optional_fields ~w(country logo)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

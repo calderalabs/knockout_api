@@ -2,16 +2,15 @@ defmodule KnockoutApi.Match do
   use KnockoutApi.Web, :model
 
   schema "matches" do
-    belongs_to :team_one, KnockoutApi.Team
-    belongs_to :team_two, KnockoutApi.Team
     belongs_to :winner, KnockoutApi.Team
     belongs_to :match_group, KnockoutApi.MatchGroup
+    field :number, :integer
 
     timestamps
   end
 
-  @required_fields ~w(team_one_id team_two_id winner_id match_group_id)
-  @optional_fields ~w()
+  @required_fields ~w(match_group_id number)
+  @optional_fields ~w(winner_id)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
