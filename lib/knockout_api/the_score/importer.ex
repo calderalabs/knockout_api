@@ -30,10 +30,10 @@ defmodule KnockoutApi.TheScore.Importer do
 
     matches["match_groups"]
     |> Enum.each(fn (params) ->
-      if params["winner_id"] do
-        winner = KnockoutApi.Repo.get_by(KnockoutApi.Team, the_score_id: params["winner_id"])
+      winner = if params["winner_id"] do
+        KnockoutApi.Repo.get_by(KnockoutApi.Team, the_score_id: params["winner_id"])
       else
-        winner = %{id: nil}
+        %{id: nil}
       end
 
       new_params = Dict.merge(params, %{
@@ -56,14 +56,14 @@ defmodule KnockoutApi.TheScore.Importer do
 
     matches["matches"]
     |> Enum.each(fn (params) ->
-      if params["winner_id"] do
-        winner = case KnockoutApi.Repo.get_by(KnockoutApi.Team, the_score_id: params["winner_id"]) do
+      winner = if params["winner_id"] do
+        case KnockoutApi.Repo.get_by(KnockoutApi.Team, the_score_id: params["winner_id"]) do
           nil ->
             %{id: nil}
           winner -> winner
         end
       else
-        winner = %{id: nil}
+        %{id: nil}
       end
 
       match_group = case KnockoutApi.Repo.get_by(KnockoutApi.MatchGroup, the_score_id: params["match_group_id"]) do

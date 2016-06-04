@@ -31,19 +31,20 @@ defmodule KnockoutApi.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.0.3"},
-      {:phoenix_ecto, "~> 1.1"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.1"},
+      {:phoenix, "~> 1.1.3"},
+      {:phoenix_ecto, "~> 2.0.2"},
+      {:postgrex, ">= 0.11.1"},
+      {:phoenix_html, "~> 2.3"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:cowboy, "~> 1.0"},
-      {:ja_serializer, "~> 0.5.0"},
+      {:ja_serializer, "~> 0.9.0"},
       {:httpoison, "~> 0.8.0"},
-      {:exvcr, "~> 0.6", only: :test},
+      {:exvcr, "~> 0.7", only: :test},
       {:mock, "~> 0.1.1", only: :test},
-      {:timex, "~> 0.19.2"},
-      {:tzdata, "== 0.1.8", override: true},
-      {:exredis, ">= 0.2.2"}
+      {:timex, "~> 2.1.6"},
+      {:tzdata, "~> 0.5.7"},
+      {:exredis, "~> 0.2.4"},
+      {:ecto, "~> 1.1.2", [override: true]}
     ]
   end
 
