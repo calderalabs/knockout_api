@@ -44,7 +44,8 @@ defmodule KnockoutApi.Mixfile do
       {:timex, "~> 2.1.6"},
       {:tzdata, "~> 0.5.7"},
       {:exredis, "~> 0.2.4"},
-      {:ecto, "~> 1.1.2", [override: true]}
+      {:ecto, "~> 1.1.2", [override: true]},
+      {:joken, "~> 1.2.0"}
     ]
   end
 

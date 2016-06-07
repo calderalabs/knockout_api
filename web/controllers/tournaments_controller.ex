@@ -11,6 +11,6 @@ defmodule KnockoutApi.TournamentsController do
   end
 
   defp fetch_matches do
-    KnockoutApi.TheScore.Server.fetch_matches("dota2")
+    %{ data: Repo.all(KnockoutApi.Tournament) }
   end
 end
