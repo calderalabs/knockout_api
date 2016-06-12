@@ -1,16 +1,13 @@
 defmodule KnockoutApi.TournamentsController do
-  alias Knockout.Repo
+  alias KnockoutApi.Repo
+  alias KnockoutApi.Tournament
   use KnockoutApi.Web, :controller
 
   def index(conn, _params) do
-    json conn, fetch_matches
+    render conn, data: Repo.all(Tournament)
   end
 
-  def show(conn, _params) do
-    json conn, fetch_matches
-  end
-
-  defp fetch_matches do
-    %{ data: Repo.all(KnockoutApi.Tournament) }
+  def show(conn, %{ "id" => id }) do
+    render conn, data: Repo.get(Tournament, id)
   end
 end

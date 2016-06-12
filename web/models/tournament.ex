@@ -3,15 +3,13 @@ defmodule KnockoutApi.Tournament do
 
   schema "tournaments" do
     field :name, :string
-    field :start_at, Ecto.DateTime
-    field :end_at, Ecto.DateTime
-    field :the_score_id, :integer
+    field :game_id, :string
 
     timestamps
   end
 
-  @required_fields ~w(name the_score_id)
-  @optional_fields ~w(start_at end_at)
+  @required_fields ~w(name game_id)
+  @optional_fields ~w()
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -22,6 +20,5 @@ defmodule KnockoutApi.Tournament do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> unique_constraint(:the_score_id)
   end
 end

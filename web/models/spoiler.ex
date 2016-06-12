@@ -1,18 +1,16 @@
-defmodule KnockoutApi.Match do
+defmodule KnockoutApi.Spoiler do
   use KnockoutApi.Web, :model
 
-  schema "matches" do
-    belongs_to :winner, KnockoutApi.Team
+  schema "spoilers" do
+    field :name, :string
     belongs_to :match_group, KnockoutApi.MatchGroup
-    field :number, :integer
-    field :like_count, :integer
-    field :vod, :map
+    belongs_to :match, KnockoutApi.Match
 
     timestamps
   end
 
-  @required_fields ~w(match_group_id number)
-  @optional_fields ~w(winner_id)
+  @required_fields ~w(name)
+  @optional_fields ~w(match_group_id match_id)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

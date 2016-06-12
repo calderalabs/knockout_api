@@ -3,15 +3,11 @@ defmodule KnockoutApi.Repo.Migrations.CreateTeam do
 
   def change do
     create table(:teams) do
-      add :full_name, :string
-      add :short_name, :string
-      add :country, :string
-      add :logo, :json
-      add :the_score_id, :integer
+      add :name, :string
+      add :logo_1x_url, :string
+      add :logo_2x_url, :string
 
       timestamps
     end
-
-    create unique_index(:teams, [:the_score_id])
   end
 end
