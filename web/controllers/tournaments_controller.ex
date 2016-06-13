@@ -1,6 +1,5 @@
 defmodule KnockoutApi.TournamentsController do
-  alias KnockoutApi.Repo
-  alias KnockoutApi.Tournament
+  alias KnockoutApi.{Repo, Tournament, User, Following}
   use KnockoutApi.Web, :controller
   import Ecto.Query
 
@@ -17,11 +16,11 @@ defmodule KnockoutApi.TournamentsController do
   end
 
   defp current_user do
-    Repo.all(from u in KnockoutApi.User, limit: 1) |> List.first
+    Repo.all(from u in User, limit: 1) |> List.first
   end
 
   defp followings do
-    KnockoutApi.Repo.all(from f in KnockoutApi.Following,
+    Repo.all(from f in Following,
       where: f.user_id == ^(current_user.id)
     )
   end
