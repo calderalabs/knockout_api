@@ -3,11 +3,12 @@ defmodule KnockoutApi.Following do
 
   schema "followings" do
     belongs_to :tournament, KnockoutApi.Tournament
+    belongs_to :user, KnockoutApi.User
 
     timestamps
   end
 
-  @required_fields ~w(tournament_id)
+  @required_fields ~w(tournament_id user_id)
   @optional_fields ~w()
 
   @doc """

@@ -3,11 +3,12 @@ defmodule KnockoutApi.Watching do
 
   schema "watchings" do
     belongs_to :match, KnockoutApi.Match
+    belongs_to :user, KnockoutApi.User
 
     timestamps
   end
 
-  @required_fields ~w(match_id)
+  @required_fields ~w(match_id user_id)
   @optional_fields ~w()
 
   @doc """

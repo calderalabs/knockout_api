@@ -5,11 +5,12 @@ defmodule KnockoutApi.Spoiler do
     field :name, :string
     belongs_to :match_group, KnockoutApi.MatchGroup
     belongs_to :match, KnockoutApi.Match
+    belongs_to :user, KnockoutApi.User
 
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(name user_id)
   @optional_fields ~w(match_group_id match_id)
 
   @doc """
