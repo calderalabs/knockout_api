@@ -10,5 +10,8 @@ defmodule KnockoutApi.Router do
 
     get "/tournaments", TournamentsController, :index
     get "/tournaments/:id", TournamentsController, :show
+    get "/users/:id", UsersController, :show
+    post "/followings", FollowingsController, :create
+    delete "/followings/:id", FollowingsController, :delete
   end
 end

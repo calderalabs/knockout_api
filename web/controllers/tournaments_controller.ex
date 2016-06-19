@@ -2,6 +2,7 @@ defmodule KnockoutApi.TournamentsController do
   alias KnockoutApi.{Repo, Tournament, User, Following}
   use KnockoutApi.Web, :controller
   import Ecto.Query
+  import KnockoutApi.BaseController
 
   def index(conn, _params) do
     render conn, data: Repo.all(Tournament), opts: %{
@@ -13,10 +14,6 @@ defmodule KnockoutApi.TournamentsController do
     render conn, data: Repo.get!(Tournament, id), opts: %{
       followings: followings
     }
-  end
-
-  defp current_user do
-    Repo.all(from u in User, limit: 1) |> List.first
   end
 
   defp followings do
