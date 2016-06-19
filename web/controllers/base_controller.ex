@@ -3,6 +3,6 @@ defmodule KnockoutApi.BaseController do
   import Ecto.Query
 
   def current_user do
-    Repo.all(from u in User, limit: 1) |> List.first
+    Repo.one(from u in User, limit: 1)
   end
 end

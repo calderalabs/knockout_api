@@ -1,9 +1,11 @@
 defmodule KnockoutApi.Tournament do
   use KnockoutApi.Web, :model
+  import Ecto.Query
 
   schema "tournaments" do
     field :name, :string
     field :game_id, :string
+    has_many :match_groups, KnockoutApi.MatchGroup
 
     timestamps
   end
@@ -20,5 +22,9 @@ defmodule KnockoutApi.Tournament do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+  end
+
+  def preload_all(query) do
+    query |> KnockoutApi.Repo.preload([match_groups: [:team_one, :team_two, :matches]])
   end
 end

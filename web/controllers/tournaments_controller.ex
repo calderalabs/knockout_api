@@ -5,13 +5,13 @@ defmodule KnockoutApi.TournamentsController do
   import KnockoutApi.BaseController
 
   def index(conn, _params) do
-    render conn, data: Repo.all(Tournament), opts: %{
+    render conn, data: Repo.all(from t in Tournament) |> Tournament.preload_all, opts: %{
       followings: followings
     }
   end
 
   def show(conn, %{ "id" => id }) do
-    render conn, data: Repo.get!(Tournament, id), opts: %{
+    render conn, data: Repo.get!(Tournament, id) |> Tournament.preload_all, opts: %{
       followings: followings
     }
   end
