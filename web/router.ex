@@ -13,5 +13,10 @@ defmodule KnockoutApi.Router do
     get "/users/:id", UsersController, :show
     post "/followings", FollowingsController, :create
     delete "/followings/:id", FollowingsController, :delete
+    post "/spoilers/", SpoilersController, :create
+    post "/watchings", WatchingsController, :create
+    delete "/watchings", WatchingsController, :delete
+    post "/likes", LikesController, :create
+    delete "/likes/:id", LikesController, :delete
   end
 end

@@ -1,17 +1,17 @@
-defmodule KnockoutApi.FollowingsController do
-  alias KnockoutApi.{Repo, Following}
+defmodule KnockoutApi.LikesController do
+  alias KnockoutApi.{Repo, Like}
   use KnockoutApi.Web, :controller
   import KnockoutApi.BaseController
 
   def create(conn, %{ "data" => data }) do
     attrs = JaSerializer.Params.to_attributes(data) |> Dict.put("user_id", current_user.id)
-    changeset = Following.changeset(%Following{}, attrs)
+    changeset = Like.changeset(%Like{}, attrs)
 
     case Repo.insert(changeset) do
-      {:ok, following} ->
+      {:ok, like} ->
         conn
         |> put_status(201)
-        |> render(:show, data: following)
+        |> render(:show, data: like)
       {:error, changeset} ->
         conn
         |> put_status(422)
@@ -20,8 +20,8 @@ defmodule KnockoutApi.FollowingsController do
   end
 
   def delete(conn, %{ "id" => id }) do
-    following = Repo.get!(Following, id)
-    Repo.delete!(following)
+    like = Repo.get!(Like, id)
+    Repo.delete!(like)
     send_resp conn, :no_content, ""
   end
 end

@@ -1,27 +1,21 @@
-defmodule KnockoutApi.FollowingsController do
-  alias KnockoutApi.{Repo, Following}
+defmodule KnockoutApi.SpoilersController do
+  alias KnockoutApi.{Repo, Spoiler}
   use KnockoutApi.Web, :controller
   import KnockoutApi.BaseController
 
   def create(conn, %{ "data" => data }) do
     attrs = JaSerializer.Params.to_attributes(data) |> Dict.put("user_id", current_user.id)
-    changeset = Following.changeset(%Following{}, attrs)
+    changeset = Spoiler.changeset(%Spoiler{}, attrs)
 
     case Repo.insert(changeset) do
-      {:ok, following} ->
+      {:ok, spoiler} ->
         conn
         |> put_status(201)
-        |> render(:show, data: following)
+        |> render(:show, data: spoiler)
       {:error, changeset} ->
         conn
         |> put_status(422)
         |> render(:errors, data: changeset)
     end
-  end
-
-  def delete(conn, %{ "id" => id }) do
-    following = Repo.get!(Following, id)
-    Repo.delete!(following)
-    send_resp conn, :no_content, ""
   end
 end

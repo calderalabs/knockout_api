@@ -1,7 +1,6 @@
 defmodule KnockoutApi.UsersController do
   alias KnockoutApi.{Repo, User}
   use KnockoutApi.Web, :controller
-  import Ecto.Query
   import KnockoutApi.BaseController
 
   def show(conn, %{ "id" => id }) do
