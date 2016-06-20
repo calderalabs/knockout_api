@@ -5,12 +5,15 @@ defmodule KnockoutApi.Router do
     plug :accepts, ["json-api"]
   end
 
+  pipeline :authenticated do
+    plug Mellon, validator: {KnockoutApi.Validation, :validate, []}, header: "authorization"
+  end
+
   scope "/", KnockoutApi do
     pipe_through :api
 
     get "/tournaments", TournamentsController, :index
     get "/tournaments/:id", TournamentsController, :show
-    get "/users/:id", UsersController, :show
     post "/followings", FollowingsController, :create
     delete "/followings/:id", FollowingsController, :delete
     post "/spoilers/", SpoilersController, :create
@@ -18,5 +21,12 @@ defmodule KnockoutApi.Router do
     delete "/watchings", WatchingsController, :delete
     post "/likes", LikesController, :create
     delete "/likes/:id", LikesController, :delete
+  end
+
+  scope "/", KnockoutApi do
+    pipe_through :api
+    pipe_through :authenticated
+
+    get "/users/:id", UsersController, :show
   end
 end

@@ -1,5 +1,6 @@
 defmodule KnockoutApi.User do
   use KnockoutApi.Web, :model
+  import Joken
 
   schema "users" do
     field :name, :string
@@ -19,5 +20,12 @@ defmodule KnockoutApi.User do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+  end
+
+  def verify_token(jwt) do
+    jwt
+    |> token
+    |> with_signer(hs256(Base.url_decode64!(System.get_env("AUTH0_CLIENT_SECRET"))))
+    |> verify
   end
 end

@@ -46,7 +46,8 @@ defmodule KnockoutApi.Mixfile do
       {:exredis, "~> 0.2.4"},
       {:ecto, "~> 1.1.2", [override: true]},
       {:joken, "~> 1.2.0"},
-      {:poison, "~> 2.1.0"}
+      {:poison, "~> 2.1.0"},
+      {:mellon, github: "calderalabs/mellon"}
     ]
   end
 
