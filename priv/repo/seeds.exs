@@ -9,9 +9,8 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
-alias KnockoutApi.{Repo, User, Tournament, Match, MatchGroup, Team}
+alias KnockoutApi.{Repo, Tournament, Match, MatchGroup, Team}
 
-user = Repo.insert!(%User{ name: "James Harding" })
 tournament = Repo.insert!(%Tournament{ name: "The International", game_id: "dota_2" })
 team_one = Repo.insert!(%Team{ name: "MYM" })
 team_two = Repo.insert!(%Team{ name: "Na`Vi" })

@@ -4,7 +4,7 @@ defmodule KnockoutApi.WatchingsController do
   import KnockoutApi.BaseController
 
   def create(conn, %{ "data" => data }) do
-    attrs = JaSerializer.Params.to_attributes(data) |> Dict.put("user_id", current_user.id)
+    attrs = JaSerializer.Params.to_attributes(data) |> Dict.put("user_id", current_user(conn).id)
     changeset = Watching.changeset(%Watching{}, attrs)
 
     case Repo.insert(changeset) do

@@ -4,7 +4,7 @@ defmodule KnockoutApi.LikesController do
   import KnockoutApi.BaseController
 
   def create(conn, %{ "data" => data }) do
-    attrs = JaSerializer.Params.to_attributes(data) |> Dict.put("user_id", current_user.id)
+    attrs = JaSerializer.Params.to_attributes(data) |> Dict.put("user_id", current_user(conn).id)
     changeset = Like.changeset(%Like{}, attrs)
 
     case Repo.insert(changeset) do
