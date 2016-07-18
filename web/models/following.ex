@@ -11,6 +11,16 @@ defmodule KnockoutApi.Following do
   @required_fields ~w(tournament_id user_id)
   @optional_fields ~w()
 
+  def for_user(user) do
+    case user do
+      nil -> []
+      user ->
+        KnockoutApi.Repo.all(from f in KnockoutApi.Following,
+          where: f.user_id == ^(user.id)
+        )
+    end
+  end
+
   @doc """
   Creates a changeset based on the `model` and `params`.
 

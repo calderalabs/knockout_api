@@ -1,4 +1,5 @@
 defmodule KnockoutApi.TournamentsView do
+  alias KnockoutApi.Following
   use KnockoutApi.Web, :view
   use JaSerializer.PhoenixView
 
@@ -8,6 +9,6 @@ defmodule KnockoutApi.TournamentsView do
   has_many :match_groups, include: true, serializer: KnockoutApi.MatchGroupsView
 
   def followings(_tournament, conn) do
-    conn.assigns.opts.followings
+    Following.for_user(conn.assigns.opts.current_user)
   end
 end

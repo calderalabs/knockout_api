@@ -11,7 +11,7 @@
 # and so on) as they will fail if something goes wrong.
 alias KnockoutApi.{Repo, Tournament, Match, MatchGroup, Team}
 
-tournament = Repo.insert!(%Tournament{ name: "The International", game_id: "dota_2" })
+tournament = Repo.insert!(%Tournament{ name: "The International", game_id: "dota-2" })
 team_one = Repo.insert!(%Team{ name: "MYM" })
 team_two = Repo.insert!(%Team{ name: "Na`Vi" })
 

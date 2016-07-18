@@ -4,6 +4,7 @@ defmodule KnockoutApi.Match do
   schema "matches" do
     belongs_to :winner, KnockoutApi.Team
     belongs_to :match_group, KnockoutApi.MatchGroup
+    has_many :spoilers, KnockoutApi.Spoiler
     field :number, :integer
     field :like_count, :integer
     field :vod, :map

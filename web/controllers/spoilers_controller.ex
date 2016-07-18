@@ -4,7 +4,13 @@ defmodule KnockoutApi.SpoilersController do
   import KnockoutApi.BaseController
 
   def create(conn, %{ "data" => data }) do
-    attrs = JaSerializer.Params.to_attributes(data) |> Dict.put("user_id", current_user(conn).id)
+    attrs = JaSerializer.Params.to_attributes(data)
+    |> Dict.put("user_id", current_user(conn).id)
+    |> Dict.to_list
+    |> Enum.reduce(%{}, fn {key, value}, acc ->
+      Dict.put(acc, String.replace(key, "-", "_"), value)
+    end)
+
     changeset = Spoiler.changeset(%Spoiler{}, attrs)
 
     case Repo.insert(changeset) do

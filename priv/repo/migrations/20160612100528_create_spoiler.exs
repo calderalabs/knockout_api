@@ -5,7 +5,7 @@ defmodule KnockoutApi.Repo.Migrations.CreateSpoiler do
     create table(:spoilers) do
       add :name, :string
       add :match_group_id, references(:match_groups)
-      add :match, references(:matches)
+      add :match_id, references(:matches)
       add :user_id, references(:users)
 
       timestamps

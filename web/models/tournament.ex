@@ -25,6 +25,6 @@ defmodule KnockoutApi.Tournament do
   end
 
   def preload_all(query) do
-    query |> KnockoutApi.Repo.preload([match_groups: [:team_one, :team_two, :matches]])
+    query |> KnockoutApi.Repo.preload([match_groups: [:team_one, :team_two, :spoilers, matches: [:spoilers]]])
   end
 end

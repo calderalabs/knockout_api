@@ -3,6 +3,10 @@ defmodule KnockoutApi.FollowingsController do
   use KnockoutApi.Web, :controller
   import KnockoutApi.BaseController
 
+  def index(conn, _params) do
+    render conn, data: Following.for_user(current_user(conn))
+  end
+
   def create(conn, %{ "data" => data }) do
     attrs = JaSerializer.Params.to_attributes(data) |> Dict.put("user_id", current_user(conn).id)
     changeset = Following.changeset(%Following{}, attrs)

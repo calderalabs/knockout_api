@@ -26,6 +26,7 @@ defmodule KnockoutApi.Router do
     pipe_through :authenticated
 
     get "/users/:id", UsersController, :show
+    get "/followings", FollowingsController, :index
     post "/followings", FollowingsController, :create
     delete "/followings/:id", FollowingsController, :delete
     post "/spoilers/", SpoilersController, :create

@@ -8,6 +8,7 @@ defmodule KnockoutApi.MatchGroup do
     belongs_to :team_one, KnockoutApi.Team
     belongs_to :team_two, KnockoutApi.Team
     has_many :matches, KnockoutApi.Match
+    has_many :spoilers, KnockoutApi.Spoiler
 
     timestamps
   end
