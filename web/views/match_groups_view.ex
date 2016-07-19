@@ -12,8 +12,6 @@ defmodule KnockoutApi.MatchGroupsView do
   has_many :spoilers, include: true, serializer: KnockoutApi.SpoilersView
 
   def spoilers(match_group, conn) do
-    Repo.all(from s in Spoiler,
-      where: s.match_group_id == ^(match_group.id) and s.user_id == ^(conn.assigns.opts.current_user.id)
-    )
+    Spoiler.for_user((from s in Spoiler, where: s.match_group_id == ^(match_group.id)), conn.assigns.opts.current_user)
   end
 end
