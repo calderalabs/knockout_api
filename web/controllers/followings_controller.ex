@@ -1,4 +1,5 @@
 defmodule KnockoutApi.FollowingsController do
+  use Timex
   alias KnockoutApi.{Repo, Following}
   use KnockoutApi.Web, :controller
   import KnockoutApi.BaseController
@@ -8,7 +9,10 @@ defmodule KnockoutApi.FollowingsController do
   end
 
   def create(conn, %{ "data" => data }) do
-    attrs = JaSerializer.Params.to_attributes(data) |> Dict.put("user_id", current_user(conn).id)
+    attrs = JaSerializer.Params.to_attributes(data)
+    |> Dict.put("user_id", current_user(conn).id)
+    |> Dict.put("seen_at", Timex.now)
+    
     changeset = Following.changeset(%Following{}, attrs)
 
     case Repo.insert(changeset) do

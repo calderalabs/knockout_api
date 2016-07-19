@@ -41,7 +41,7 @@ defmodule KnockoutApi.Mixfile do
       {:httpoison, "~> 0.8.0"},
       {:exvcr, "~> 0.7", only: :test},
       {:mock, "~> 0.1.1", only: :test},
-      {:timex, "~> 2.1.6"},
+      {:timex, "~> 3.0.4"},
       {:tzdata, "~> 0.5.7"},
       {:exredis, "~> 0.2.4"},
       {:ecto, "~> 1.1.2", [override: true]},
