@@ -2,7 +2,7 @@ defmodule KnockoutApi.MatchGroup do
   use KnockoutApi.Web, :model
 
   schema "match_groups" do
-    field :start_at, Ecto.DateTime
+    field :started_at, Ecto.DateTime
     field :best_of, :integer
     belongs_to :tournament, KnockoutApi.Tournament
     belongs_to :team_one, KnockoutApi.Team

@@ -1,6 +1,6 @@
 defmodule KnockoutApi.Tournament do
+  alias KnockoutApi.{Repo, Match, MatchGroup}
   use KnockoutApi.Web, :model
-  import Ecto.Query
 
   schema "tournaments" do
     field :name, :string
@@ -25,6 +25,15 @@ defmodule KnockoutApi.Tournament do
   end
 
   def preload_all(query) do
-    query |> KnockoutApi.Repo.preload([match_groups: [:team_one, :team_two, :spoilers, matches: [:spoilers]]])
+    query |> Repo.preload([match_groups: [:team_one, :team_two, :spoilers, matches: [:spoilers]]])
+  end
+
+  def matches_count(tournament) do
+    Repo.all(from m in Match,
+      select: count(m.id),
+        join: mg in MatchGroup,
+        on: mg.id == m.match_group_id,
+        where: mg.tournament_id == ^(tournament.id)
+    )
   end
 end

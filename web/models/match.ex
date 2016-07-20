@@ -6,7 +6,7 @@ defmodule KnockoutApi.Match do
     belongs_to :match_group, KnockoutApi.MatchGroup
     has_many :spoilers, KnockoutApi.Spoiler
     field :number, :integer
-    field :like_count, :integer
+    field :likes_count, :integer
     field :vod, :map
 
     timestamps

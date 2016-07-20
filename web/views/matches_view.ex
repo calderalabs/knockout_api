@@ -7,7 +7,7 @@ defmodule KnockoutApi.MatchesView do
   has_many :spoilers, include: true, serializer: KnockoutApi.SpoilersView
   has_many :watchings, include: true, serializer: KnockoutApi.WatchingsView
 
-  attributes [:winner_id, :match_group_id, :number, :like_count, :vod]
+  attributes [:winner_id, :match_group_id, :number, :likes_count, :vod]
 
   def spoilers(match, conn) do
     Spoiler.for_user((from s in Spoiler, where: s.match_id == ^(match.id)), conn.assigns.opts.current_user)

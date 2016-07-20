@@ -3,7 +3,7 @@ defmodule KnockoutApi.Repo.Migrations.CreateMatchGroup do
 
   def change do
     create table(:match_groups) do
-      add :start_at, :datetime
+      add :started_at, :datetime
       add :tournament_id, references(:tournaments)
       add :team_one_id, references(:teams)
       add :team_two_id, references(:teams)
