@@ -14,13 +14,6 @@ defmodule KnockoutApi.Spoiler do
   @required_fields ~w(name user_id)
   @optional_fields ~w(match_group_id match_id)
 
-  def for_user(query, user) do
-    case user do
-      nil -> []
-      user -> Repo.all(from s in query, where: s.user_id == ^(user.id))
-    end
-  end
-
   @doc """
   Creates a changeset based on the `model` and `params`.
 

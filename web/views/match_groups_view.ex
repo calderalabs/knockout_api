@@ -10,7 +10,15 @@ defmodule KnockoutApi.MatchGroupsView do
   has_many :matches, include: true, serializer: KnockoutApi.MatchesView
   has_many :spoilers, include: true, serializer: KnockoutApi.SpoilersView
 
+  def matches(match_group, conn) do
+    Enum.filter(conn.assigns.opts.matches, fn(m) ->
+      m.match_group_id == match_group.id
+    end)
+  end
+
   def spoilers(match_group, conn) do
-    Spoiler.for_user(Ecto.assoc(match_group, :spoilers), conn.assigns.opts.current_user)
+    Enum.filter(conn.assigns.opts.match_groups_spoilers, fn(s) ->
+      s.match_group_id == match_group.id
+    end)
   end
 end

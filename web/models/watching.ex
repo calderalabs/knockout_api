@@ -12,13 +12,6 @@ defmodule KnockoutApi.Watching do
   @required_fields ~w(match_id user_id)
   @optional_fields ~w()
 
-  def for_user(query, user) do
-    case user do
-      nil -> []
-      user -> Repo.all(from w in query, where: w.user_id == ^(user.id))
-    end
-  end
-
   @doc """
   Creates a changeset based on the `model` and `params`.
 

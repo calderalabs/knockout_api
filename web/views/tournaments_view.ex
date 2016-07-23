@@ -6,10 +6,12 @@ defmodule KnockoutApi.TournamentsView do
   attributes [:name, :game_id, :matches_count]
 
   has_many :followings, include: true, serializer: KnockoutApi.FollowingsView
-  has_many :match_groups, include: true, serializer: KnockoutApi.MatchGroupsView
+  has_many :match_groups, links: [related: "/match_groups?tournament_id=:id"]
 
   def followings(tournament, conn) do
-    Following.for_user(Ecto.assoc(tournament, :followings), conn.assigns.opts.current_user)
+    Enum.filter(conn.assigns.opts.followings, fn(f) ->
+      f.tournament_id == tournament.id
+    end)
   end
 
   def matches_count(tournament, _conn) do

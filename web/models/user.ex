@@ -55,4 +55,11 @@ defmodule KnockoutApi.User do
       auth0_id: data["user_id"]
     })
   end
+
+  def filter_query_by_user(query, user) do
+    case user do
+      nil -> []
+      user -> Repo.all(from r in query, where: r.user_id == ^(user.id))
+    end
+  end
 end

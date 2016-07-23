@@ -10,14 +10,20 @@ defmodule KnockoutApi.MatchesView do
   attributes [:winner_id, :match_group_id, :number, :likes_count, :vod]
 
   def spoilers(match, conn) do
-    Spoiler.for_user(Ecto.assoc(match, :spoilers), conn.assigns.opts.current_user)
+    Enum.filter(conn.assigns.opts.matches_spoilers, fn(s) ->
+      s.match_id == match.id
+    end)
   end
 
   def watchings(match, conn) do
-    Watching.for_user(Ecto.assoc(match, :watchings), conn.assigns.opts.current_user)
+    Enum.filter(conn.assigns.opts.watchings, fn(w) ->
+      w.match_id == match.id
+    end)
   end
 
   def likes(match, conn) do
-    Like.for_user(Ecto.assoc(match, :likes), conn.assigns.opts.current_user)
+    Enum.filter(conn.assigns.opts.likes, fn(l) ->
+      l.match_id == match.id
+    end)
   end
 end

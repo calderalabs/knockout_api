@@ -25,10 +25,6 @@ defmodule KnockoutApi.Tournament do
     |> cast(params, @required_fields, @optional_fields)
   end
 
-  def preload_all(query) do
-    query |> Repo.preload([match_groups: [:team_one, :team_two, :spoilers, matches: [:spoilers, :watchings, :likes]]])
-  end
-
   def matches_count(tournament) do
     Repo.all(from m in Match,
       select: count(m.id),

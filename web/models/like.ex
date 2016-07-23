@@ -23,13 +23,6 @@ defmodule KnockoutApi.Like do
     |> cast(params, @required_fields, @optional_fields)
   end
 
-  def for_user(query, user) do
-    case user do
-      nil -> []
-      user -> Repo.all(from l in query, where: l.user_id == ^(user.id))
-    end
-  end
-
   def create(changeset) do
     changeset
     |> prepare_changes(fn changeset ->
