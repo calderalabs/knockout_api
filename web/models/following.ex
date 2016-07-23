@@ -13,13 +13,10 @@ defmodule KnockoutApi.Following do
   @required_fields ~w(tournament_id user_id seen_at)
   @optional_fields ~w()
 
-  def for_user(user) do
+  def for_user(query, user) do
     case user do
       nil -> []
-      user ->
-        Repo.all(from f in Following,
-          where: f.user_id == ^(user.id)
-        )
+      user -> Repo.all(from f in query, where: f.user_id == ^(user.id))
     end
   end
 

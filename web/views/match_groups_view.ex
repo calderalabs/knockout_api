@@ -2,7 +2,6 @@ defmodule KnockoutApi.MatchGroupsView do
   alias KnockoutApi.{Repo, Spoiler}
   use KnockoutApi.Web, :view
   use JaSerializer.PhoenixView
-  import Ecto.Query
 
   attributes [:tournament_id, :started_at, :best_of]
 
@@ -12,6 +11,6 @@ defmodule KnockoutApi.MatchGroupsView do
   has_many :spoilers, include: true, serializer: KnockoutApi.SpoilersView
 
   def spoilers(match_group, conn) do
-    Spoiler.for_user((from s in Spoiler, where: s.match_group_id == ^(match_group.id)), conn.assigns.opts.current_user)
+    Spoiler.for_user(Ecto.assoc(match_group, :spoilers), conn.assigns.opts.current_user)
   end
 end

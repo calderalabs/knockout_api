@@ -25,17 +25,20 @@ match_group = Repo.insert!(%MatchGroup{
 Repo.insert!(%Match{
   winner_id: team_one.id,
   number: 1,
-  match_group_id: match_group.id
+  match_group_id: match_group.id,
+  likes_count: 0
 })
 
 Repo.insert!(%Match{
   winner_id: team_two.id,
   number: 2,
-  match_group_id: match_group.id
+  match_group_id: match_group.id,
+  likes_count: 0
 })
 
 Repo.insert!(%Match{
   winner_id: team_one.id,
   number: 3,
-  match_group_id: match_group.id
+  match_group_id: match_group.id,
+  likes_count: 0
 })

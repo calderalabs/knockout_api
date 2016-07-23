@@ -4,6 +4,7 @@ defmodule KnockoutApi.User do
   import Joken
 
   schema "users" do
+    has_many :followings, KnockoutApi.Following
     field :name, :string
     field :auth0_id, :string
     field :email, :string

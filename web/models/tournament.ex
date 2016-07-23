@@ -6,6 +6,7 @@ defmodule KnockoutApi.Tournament do
     field :name, :string
     field :game_id, :string
     has_many :match_groups, KnockoutApi.MatchGroup
+    has_many :followings, KnockoutApi.Following
 
     timestamps
   end
@@ -25,7 +26,7 @@ defmodule KnockoutApi.Tournament do
   end
 
   def preload_all(query) do
-    query |> Repo.preload([match_groups: [:team_one, :team_two, :spoilers, matches: [:spoilers]]])
+    query |> Repo.preload([match_groups: [:team_one, :team_two, :spoilers, matches: [:spoilers, :watchings, :likes]]])
   end
 
   def matches_count(tournament) do

@@ -4,7 +4,7 @@ defmodule KnockoutApi.Repo.Migrations.CreateMatch do
   def change do
     create table(:matches) do
       add :winner_id, references(:teams)
-      add :likes_count, :integer
+      add :likes_count, :integer, null: false, default: 0
       add :number, :integer
       add :vod, :json
       add :match_group_id, references(:match_groups)

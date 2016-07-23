@@ -8,8 +8,8 @@ defmodule KnockoutApi.TournamentsView do
   has_many :followings, include: true, serializer: KnockoutApi.FollowingsView
   has_many :match_groups, include: true, serializer: KnockoutApi.MatchGroupsView
 
-  def followings(_tournament, conn) do
-    Following.for_user(conn.assigns.opts.current_user)
+  def followings(tournament, conn) do
+    Following.for_user(Ecto.assoc(tournament, :followings), conn.assigns.opts.current_user)
   end
 
   def matches_count(tournament, _conn) do

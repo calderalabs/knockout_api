@@ -5,6 +5,8 @@ defmodule KnockoutApi.Match do
     belongs_to :winner, KnockoutApi.Team
     belongs_to :match_group, KnockoutApi.MatchGroup
     has_many :spoilers, KnockoutApi.Spoiler
+    has_many :watchings, KnockoutApi.Watching
+    has_many :likes, KnockoutApi.Like
     field :number, :integer
     field :likes_count, :integer
     field :vod, :map

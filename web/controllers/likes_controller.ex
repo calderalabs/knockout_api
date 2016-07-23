@@ -7,7 +7,7 @@ defmodule KnockoutApi.LikesController do
     attrs = JaSerializer.Params.to_attributes(data) |> Dict.put("user_id", current_user(conn).id)
     changeset = Like.changeset(%Like{}, attrs)
 
-    case Repo.insert(changeset) do
+    case Like.create(changeset) do
       {:ok, like} ->
         conn
         |> put_status(201)
@@ -21,7 +21,7 @@ defmodule KnockoutApi.LikesController do
 
   def delete(conn, %{ "id" => id }) do
     like = Repo.get!(Like, id)
-    Repo.delete!(like)
+    Like.destroy(like)
     send_resp conn, :no_content, ""
   end
 end
