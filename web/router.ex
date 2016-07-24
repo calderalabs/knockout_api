@@ -32,7 +32,7 @@ defmodule KnockoutApi.Router do
     delete "/followings/:id", FollowingsController, :delete
     post "/spoilers/", SpoilersController, :create
     post "/watchings", WatchingsController, :create
-    delete "/watchings", WatchingsController, :delete
+    delete "/watchings/:id", WatchingsController, :delete
     post "/likes", LikesController, :create
     delete "/likes/:id", LikesController, :delete
   end
