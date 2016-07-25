@@ -35,5 +35,6 @@ defmodule KnockoutApi.Endpoint do
     key: "_knockout_api_key",
     signing_salt: "ONb1fHCc"
 
+  plug CORSPlug
   plug KnockoutApi.Router
 end

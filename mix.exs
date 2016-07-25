@@ -47,7 +47,8 @@ defmodule KnockoutApi.Mixfile do
       {:ecto, "~> 1.1.2", [override: true]},
       {:joken, "~> 1.2.0"},
       {:poison, "~> 2.1.0"},
-      {:mellon, github: "calderalabs/mellon"}
+      {:mellon, github: "calderalabs/mellon"},
+      {:cors_plug, "~> 1.1"}
     ]
   end
 
