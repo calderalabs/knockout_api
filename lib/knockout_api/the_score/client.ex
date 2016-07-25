@@ -1,6 +1,5 @@
 defmodule KnockoutApi.TheScore.Client do
   use Timex
-  import Parallel
   alias KnockoutApi.TheScore.Resources.MatchGroup
   alias KnockoutApi.TheScore.Resources.Match
   alias KnockoutApi.TheScore.Resources.Team
@@ -43,11 +42,11 @@ defmodule KnockoutApi.TheScore.Client do
   end
 
   defp query do
-    {:ok, start_date_from} = Date.now
-      |> Date.subtract(Time.to_timestamp(30, :days))
-      |> DateFormat.format("{YYYY}-{M}-{D}T00:00:00+0000")
+    {:ok, start_date_from} = Timex.now
+      |> Timex.subtract(Duration.from_days(30))
+      |> Timex.format("{YYYY}-{M}-{D}T00:00:00+0000")
 
-    {:ok, start_date_to} = Date.now |> DateFormat.format("{YYYY}-{M}-{D}T00:00:00+0000")
+    {:ok, start_date_to} = Timex.now |> Timex.format("{YYYY}-{M}-{D}T00:00:00+0000")
 
     %{
       "start_date_from" => start_date_from,

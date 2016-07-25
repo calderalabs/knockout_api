@@ -1,5 +1,4 @@
 defmodule KnockoutApi.Watching do
-  alias KnockoutApi.Repo
   use KnockoutApi.Web, :model
 
   schema "watchings" do

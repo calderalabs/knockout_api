@@ -22,7 +22,7 @@ defmodule KnockoutApi.FollowingsController do
 
         conn
         |> put_status(201)
-        |> json data
+        |> json(data)
       {:error, changeset} ->
         conn
         |> put_status(422)

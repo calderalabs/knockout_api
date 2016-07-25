@@ -1,5 +1,5 @@
 defmodule KnockoutApi.TournamentsController do
-  alias KnockoutApi.{Repo, Tournament, Following, Spoiler, Watching, Like, User}
+  alias KnockoutApi.{Repo, Tournament, User}
   use KnockoutApi.Web, :controller
   import Ecto.Query
   import KnockoutApi.BaseController

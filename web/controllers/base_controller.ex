@@ -1,6 +1,5 @@
 defmodule KnockoutApi.BaseController do
-  alias KnockoutApi.{Repo, User}
-  import Ecto.Query
+  alias KnockoutApi.User
 
   def current_user(conn) do
     case Plug.Conn.get_req_header(conn, "authorization") do

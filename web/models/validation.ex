@@ -1,5 +1,5 @@
 defmodule KnockoutApi.Validation do
-  def validate(params = {conn, token}) do
+  def validate({conn, token}) do
     KnockoutApi.User.verify_token(token)
     |> handle(conn)
   end
@@ -8,7 +8,7 @@ defmodule KnockoutApi.Validation do
     {:ok, claims, conn}
   end
 
-  defp handle(%{error: error}, conn) do
+  defp handle(%{error: _error}, conn) do
     {:error, [], conn}
   end
 end

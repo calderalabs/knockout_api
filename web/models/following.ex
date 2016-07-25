@@ -1,5 +1,5 @@
 defmodule KnockoutApi.Following do
-  alias KnockoutApi.{Repo, Following, Match, Watching}
+  alias KnockoutApi.{Repo, Match, Watching}
   use KnockoutApi.Web, :model
 
   schema "followings" do

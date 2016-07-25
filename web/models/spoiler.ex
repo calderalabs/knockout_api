@@ -1,5 +1,4 @@
 defmodule KnockoutApi.Spoiler do
-  alias KnockoutApi.Repo
   use KnockoutApi.Web, :model
 
   schema "spoilers" do

@@ -1,5 +1,5 @@
 defmodule KnockoutApi.TournamentsView do
-  alias KnockoutApi.{Following, Tournament}
+  alias KnockoutApi.Tournament
   use KnockoutApi.Web, :view
   use JaSerializer.PhoenixView
 

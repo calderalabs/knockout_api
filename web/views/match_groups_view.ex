@@ -1,5 +1,4 @@
 defmodule KnockoutApi.MatchGroupsView do
-  alias KnockoutApi.{Repo, Spoiler}
   use KnockoutApi.Web, :view
   use JaSerializer.PhoenixView
 

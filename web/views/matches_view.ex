@@ -1,5 +1,4 @@
 defmodule KnockoutApi.MatchesView do
-  alias KnockoutApi.{Spoiler, Repo, Watching, Like}
   use KnockoutApi.Web, :view
   use JaSerializer.PhoenixView
 
