@@ -37,7 +37,7 @@ defmodule KnockoutApi.Mixfile do
       {:phoenix_html, "~> 2.3"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:cowboy, "~> 1.0"},
-      {:ja_serializer, "~> 0.9.0"},
+      {:ja_serializer, "~> 0.10.1"},
       {:httpoison, "~> 0.8.0"},
       {:exvcr, "~> 0.7", only: :test},
       {:mock, "~> 0.1.1", only: :test},

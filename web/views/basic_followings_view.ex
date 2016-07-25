@@ -1,11 +1,11 @@
-defmodule KnockoutApi.FollowingsView do
+defmodule KnockoutApi.BasicFollowingsView do
   alias KnockoutApi.Following
   use KnockoutApi.Web, :view
   use JaSerializer.PhoenixView
 
-  has_one :tournament, include: true, serializer: KnockoutApi.TournamentsView
+  attributes [:tournament_id, :new_matches_count, :seen_at]
 
-  attributes [:new_matches_count, :seen_at]
+  def type(_following, _conn), do: "following"
 
   def new_matches_count(following, _conn) do
     Following.new_matches_count(following)

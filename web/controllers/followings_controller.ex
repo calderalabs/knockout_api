@@ -5,7 +5,8 @@ defmodule KnockoutApi.FollowingsController do
   import KnockoutApi.BaseController
 
   def index(conn, _params) do
-    render conn, data: Repo.preload(current_user(conn), :followings).followings
+    render conn, data: Repo.all(Ecto.assoc(current_user(conn), :followings))
+    |> Repo.preload([:tournament]), opts: %{ followings: [] }
   end
 
   def create(conn, %{ "data" => data }) do
@@ -17,9 +18,11 @@ defmodule KnockoutApi.FollowingsController do
 
     case Repo.insert(changeset) do
       {:ok, following} ->
+        data = following |> KnockoutApi.BasicFollowingsView.format(conn)
+
         conn
         |> put_status(201)
-        |> render(:show, data: following)
+        |> json data
       {:error, changeset} ->
         conn
         |> put_status(422)
