@@ -9,5 +9,7 @@ defmodule KnockoutApi.Repo.Migrations.CreateFollowing do
 
       timestamps
     end
+
+    create index(:followings, [:id, :user_id], unique: true)
   end
 end

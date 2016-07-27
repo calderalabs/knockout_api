@@ -10,5 +10,7 @@ defmodule KnockoutApi.Repo.Migrations.CreateSpoiler do
 
       timestamps
     end
+
+    create index(:spoilers, [:id, :user_id], unique: true)
   end
 end

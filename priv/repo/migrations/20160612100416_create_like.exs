@@ -8,5 +8,7 @@ defmodule KnockoutApi.Repo.Migrations.CreateLike do
 
       timestamps
     end
+
+    create index(:likes, [:id, :user_id], unique: true)
   end
 end

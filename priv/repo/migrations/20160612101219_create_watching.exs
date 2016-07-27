@@ -8,5 +8,7 @@ defmodule KnockoutApi.Repo.Migrations.CreateWatching do
 
       timestamps
     end
+
+    create index(:watchings, [:id, :user_id], unique: true)
   end
 end

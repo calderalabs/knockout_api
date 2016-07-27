@@ -10,6 +10,6 @@ defmodule KnockoutApi.Repo.Migrations.CreateUser do
       timestamps
     end
 
-    create index(:users, [:auth0_id])
+    create index(:users, [:auth0_id], unique: true)
   end
 end
