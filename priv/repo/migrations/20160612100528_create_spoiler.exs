@@ -11,6 +11,6 @@ defmodule KnockoutApi.Repo.Migrations.CreateSpoiler do
       timestamps
     end
 
-    create index(:spoilers, [:id, :user_id], unique: true)
+    create index(:spoilers, [:user_id, :match_group_id, :match_id], unique: true)
   end
 end
