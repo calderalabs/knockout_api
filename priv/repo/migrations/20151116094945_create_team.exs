@@ -3,9 +3,9 @@ defmodule KnockoutApi.Repo.Migrations.CreateTeam do
 
   def change do
     create table(:teams) do
-      add :name, :string
-      add :logo_1x_url, :string
-      add :logo_2x_url, :string
+      add :full_name, :string
+      add :short_name, :string
+      add :logo_url, :string
 
       timestamps
     end

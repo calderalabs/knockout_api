@@ -3,7 +3,7 @@ defmodule KnockoutApi.TheScore.Transformations do
 
   defimpl Poison.Encoder, for: [DateTime] do
     def encode(dt, _opts) do
-      {:ok, date} = Timex.format(dt, "{ISOz}")
+      {:ok, date} = Timex.format(dt, "{ISO:Extended}")
       <<?", date::binary, ?">>
     end
   end

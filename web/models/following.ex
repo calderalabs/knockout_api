@@ -5,7 +5,7 @@ defmodule KnockoutApi.Following do
   schema "followings" do
     belongs_to :tournament, KnockoutApi.Tournament
     belongs_to :user, KnockoutApi.User
-    field :seen_at, Ecto.DateTime
+    field :seen_at, Timex.Ecto.DateTime
 
     timestamps
   end
