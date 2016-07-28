@@ -20,4 +20,16 @@ defmodule KnockoutApi.MatchGroupsView do
       s.match_group_id == match_group.id
     end)
   end
+
+  def team_one(match_group, conn) do
+    Enum.filter(conn.assigns.opts.teams, fn(t) ->
+      t.id == match_group.team_one_id
+    end) |> List.first
+  end
+
+  def team_two(match_group, conn) do
+    Enum.filter(conn.assigns.opts.teams, fn(t) ->
+      t.id == match_group.team_two_id
+    end) |> List.first
+  end
 end

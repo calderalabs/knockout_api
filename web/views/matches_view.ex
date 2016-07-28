@@ -5,8 +5,9 @@ defmodule KnockoutApi.MatchesView do
   has_many :spoilers, include: true, serializer: KnockoutApi.SpoilersView
   has_many :watchings, include: true, serializer: KnockoutApi.WatchingsView
   has_many :likes, include: true, serializer: KnockoutApi.LikesView
+  has_one :winner, include: true, serializer: KnockoutApi.TeamsView
 
-  attributes [:winner_id, :match_group_id, :number, :likes_count, :vod]
+  attributes [:match_group_id, :number, :likes_count, :vod]
 
   def spoilers(match, conn) do
     Enum.filter(conn.assigns.opts.matches_spoilers, fn(s) ->
@@ -24,5 +25,11 @@ defmodule KnockoutApi.MatchesView do
     Enum.filter(conn.assigns.opts.likes, fn(l) ->
       l.match_id == match.id
     end)
+  end
+
+  def winner(match, conn) do
+    Enum.filter(conn.assigns.opts.teams, fn(t) ->
+      t.id == match.winner_id
+    end) |> List.first
   end
 end
