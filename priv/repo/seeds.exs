@@ -168,7 +168,7 @@ Repo.insert!(%Match{
   match_group_id: match_group.id,
   likes_count: 0,
   vod: %{
-    url: "https://www.youtube.com/watch?time_continue=1350&v=RqMfquZmBvI",
+    url: "https://www.youtube.com/embed/RqMfquZmBvI?time_continue=1350",
     type: "youtube"
   }
 })
@@ -200,7 +200,7 @@ Repo.insert!(%Match{
   match_group_id: match_group.id,
   likes_count: 0,
   vod: %{
-    url: "https://www.youtube.com/watch?time_continue=1500&v=NTREzkbnA5w",
+    url: "https://www.youtube.com/embed/NTREzkbnA5w?time_continue=1500",
     type: "youtube"
   }
 })
@@ -232,7 +232,7 @@ Repo.insert!(%Match{
   match_group_id: match_group.id,
   likes_count: 0,
   vod: %{
-    url: "https://www.youtube.com/watch?time_continue=1320&v=JoI8Q20yTfs",
+    url: "https://www.youtube.com/embed/JoI8Q20yTfs?time_continue=1320",
     type: "youtube"
   }
 })
@@ -243,7 +243,7 @@ Repo.insert!(%Match{
   match_group_id: match_group.id,
   likes_count: 0,
   vod: %{
-    url: "https://www.youtube.com/watch?time_continue=2140&v=JoI8Q20yTfs",
+    url: "https://www.youtube.com/embed/JoI8Q20yTfs?time_continue=2140",
     type: "youtube"
   }
 })
@@ -340,7 +340,7 @@ Repo.insert!(%Match{
   match_group_id: match_group.id,
   likes_count: 0,
   vod: %{
-    url: "https://www.youtube.com/watch?time_continue=1440&v=oUUvOghwwcs",
+    url: "https://www.youtube.com/embed/oUUvOghwwcs?time_continue=1440",
     type: "youtube"
   }
 })
@@ -372,7 +372,7 @@ Repo.insert!(%Match{
   match_group_id: match_group.id,
   likes_count: 0,
   vod: %{
-    url: "https://www.youtube.com/watch?time_continue=1020&v=wAmJ_xndnF4",
+    url: "https://www.youtube.com/embed/wAmJ_xndnF4?time_continue=1020",
     type: "youtube"
   }
 })
@@ -383,7 +383,7 @@ Repo.insert!(%Match{
   match_group_id: match_group.id,
   likes_count: 0,
   vod: %{
-    url: "https://www.youtube.com/watch?time_continue=2320&v=wAmJ_xndnF4",
+    url: "https://www.youtube.com/embed/wAmJ_xndnF4?time_continue=2320",
     type: "youtube"
   }
 })
@@ -415,7 +415,7 @@ Repo.insert!(%Match{
   match_group_id: match_group.id,
   likes_count: 0,
   vod: %{
-    url: "https://www.youtube.com/watch?time_continue=1140&v=QwYguAxiA44",
+    url: "https://www.youtube.com/embed/QwYguAxiA44?time_continue=1140",
     type: "youtube"
   }
 })
@@ -447,7 +447,7 @@ Repo.insert!(%Match{
   match_group_id: match_group.id,
   likes_count: 0,
   vod: %{
-    url: "https://www.youtube.com/watch?time_continue=1620&v=wcsP-GUjXqI",
+    url: "https://www.youtube.com/embed/wcsP-GUjXqI?time_continue=1620",
     type: "youtube"
   }
 })
@@ -458,7 +458,7 @@ Repo.insert!(%Match{
   match_group_id: match_group.id,
   likes_count: 0,
   vod: %{
-    url: "https://www.youtube.com/watch?time_continue=2760&v=wcsP-GUjXqI",
+    url: "https://www.youtube.com/embed/wcsP-GUjXqI?time_continue=2760",
     type: "youtube"
   }
 })
@@ -469,7 +469,7 @@ Repo.insert!(%Match{
   match_group_id: match_group.id,
   likes_count: 0,
   vod: %{
-    url: "https://www.youtube.com/watch?time_continue=4320&v=wcsP-GUjXqI",
+    url: "https://www.youtube.com/embed/wcsP-GUjXqI?time_continue=4320",
     type: "youtube"
   }
 })
