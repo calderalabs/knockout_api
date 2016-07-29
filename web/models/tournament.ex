@@ -5,13 +5,14 @@ defmodule KnockoutApi.Tournament do
   schema "tournaments" do
     field :name, :string
     field :game_id, :string
+    field :current_stage, :string
     has_many :match_groups, KnockoutApi.MatchGroup
     has_many :followings, KnockoutApi.Following
 
     timestamps
   end
 
-  @required_fields ~w(name game_id)
+  @required_fields ~w(name game_id current_stage)
   @optional_fields ~w()
 
   @doc """

@@ -9,12 +9,12 @@ defmodule KnockoutApi.Match do
     has_many :likes, KnockoutApi.Like
     field :number, :integer
     field :likes_count, :integer
-    field :vod, :map
+    field :vod, :string
 
     timestamps
   end
 
-  @required_fields ~w(match_group_id number)
+  @required_fields ~w(match_group_id number likes_count vod)
   @optional_fields ~w(winner_id)
 
   @doc """
@@ -26,5 +26,6 @@ defmodule KnockoutApi.Match do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_format(:vod, ~r/(youtube\.com\/embed)|(twitch.tv\/.*\/v\/)/)
   end
 end

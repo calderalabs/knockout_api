@@ -5,6 +5,7 @@ defmodule KnockoutApi.Repo.Migrations.CreateTournament do
     create table(:tournaments) do
       add :name, :string
       add :game_id, :string
+      add :current_stage, :string
 
       timestamps
     end

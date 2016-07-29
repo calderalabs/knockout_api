@@ -8,6 +8,7 @@ defmodule KnockoutApi.Repo.Migrations.CreateMatchGroup do
       add :team_one_id, references(:teams)
       add :team_two_id, references(:teams)
       add :best_of, :integer
+      add :stage, :string
 
       timestamps
     end

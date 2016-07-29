@@ -4,6 +4,7 @@ defmodule KnockoutApi.MatchGroup do
   schema "match_groups" do
     field :started_at, Timex.Ecto.DateTime
     field :best_of, :integer
+    field :stage, :string
     belongs_to :tournament, KnockoutApi.Tournament
     belongs_to :team_one, KnockoutApi.Team
     belongs_to :team_two, KnockoutApi.Team
@@ -13,7 +14,7 @@ defmodule KnockoutApi.MatchGroup do
     timestamps
   end
 
-  @required_fields ~w(tournament_id team_one_id team_two_id best_of)
+  @required_fields ~w(tournament_id team_one_id team_two_id best_of stage)
   @optional_fields ~w(start_at)
 
   @doc """

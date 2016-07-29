@@ -3,7 +3,7 @@ defmodule KnockoutApi.TournamentsView do
   use KnockoutApi.Web, :view
   use JaSerializer.PhoenixView
 
-  attributes [:name, :game_id, :matches_count]
+  attributes [:name, :game_id, :matches_count, :current_stage]
 
   has_many :followings, include: true, serializer: KnockoutApi.BasicFollowingsView
   has_many :match_groups, links: [related: "/match_groups?tournament_id=:id"]
