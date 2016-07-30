@@ -25,14 +25,14 @@ splyce = Repo.insert!(%Team{ full_name: "Splyce Gaming OW", short_name: "SPLYCEo
 # Upper bracket
 # 1
 
-match_group = Repo.insert!(%MatchGroup{
+match_group = Repo.insert!(MatchGroup.changeset(%MatchGroup{}, %{
   tournament_id: tournament.id,
   team_one_id: envyus.id,
   team_two_id: one_shot.id,
   best_of: 3,
   started_at: Timex.to_datetime({{2016, 7, 09}, {22, 00, 00}}, "Europe/Paris"),
   stage: "Upper Bracket - Round 1"
-})
+}))
 
 Repo.insert!(Match.changeset(%Match{}, %{
   winner_id: envyus.id,
@@ -52,14 +52,14 @@ Repo.insert!(Match.changeset(%Match{}, %{
 
 # 2
 
-match_group = Repo.insert!(%MatchGroup{
+match_group = Repo.insert!(MatchGroup.changeset(%MatchGroup{}, %{
   tournament_id: tournament.id,
   team_one_id: ng_red.id,
   team_two_id: liquid.id,
   best_of: 3,
   started_at: Timex.to_datetime({{2016, 7, 09}, {21, 00, 00}}, "Europe/Paris"),
   stage: "Upper Bracket - Round 1"
-})
+}))
 
 Repo.insert!(Match.changeset(%Match{}, %{
   winner_id: ng_red.id,
@@ -87,14 +87,14 @@ Repo.insert!(Match.changeset(%Match{}, %{
 
 # 3
 
-match_group = Repo.insert!(%MatchGroup{
+match_group = Repo.insert!(MatchGroup.changeset(%MatchGroup{}, %{
   tournament_id: tournament.id,
   team_one_id: cloud9.id,
   team_two_id: code7.id,
   best_of: 3,
   started_at: Timex.to_datetime({{2016, 7, 09}, {23, 00, 00}}, "Europe/Paris"),
   stage: "Upper Bracket - Round 1"
-})
+}))
 
 Repo.insert!(Match.changeset(%Match{}, %{
   winner_id: code7.id,
@@ -122,14 +122,14 @@ Repo.insert!(Match.changeset(%Match{}, %{
 
 # 4
 
-match_group = Repo.insert!(%MatchGroup{
+match_group = Repo.insert!(MatchGroup.changeset(%MatchGroup{}, %{
   tournament_id: tournament.id,
   team_one_id: envyus.id,
   team_two_id: ng_red.id,
   best_of: 3,
   started_at: Timex.to_datetime({{2016, 7, 10}, {03, 00, 00}}, "Europe/Paris"),
   stage: "Upper Bracket - Round 2"
-})
+}))
 
 Repo.insert!(Match.changeset(%Match{}, %{
   winner_id: envyus.id,
@@ -149,14 +149,14 @@ Repo.insert!(Match.changeset(%Match{}, %{
 
 # 5
 
-match_group = Repo.insert!(%MatchGroup{
+match_group = Repo.insert!(MatchGroup.changeset(%MatchGroup{}, %{
   tournament_id: tournament.id,
   team_one_id: luminosity.id,
   team_two_id: cloud9.id,
   best_of: 3,
   started_at: Timex.to_datetime({{2016, 7, 10}, {02, 00, 00}}, "Europe/Paris"),
   stage: "Upper Bracket - Round 2"
-})
+}))
 
 Repo.insert!(Match.changeset(%Match{}, %{
   winner_id: cloud9.id,
@@ -176,14 +176,14 @@ Repo.insert!(Match.changeset(%Match{}, %{
 
 # 6
 
-match_group = Repo.insert!(%MatchGroup{
+match_group = Repo.insert!(MatchGroup.changeset(%MatchGroup{}, %{
   tournament_id: tournament.id,
   team_one_id: envyus.id,
   team_two_id: cloud9.id,
   best_of: 5,
   started_at: Timex.to_datetime({{2016, 7, 10}, {23, 00, 00}}, "Europe/Paris"),
   stage: "Upper Bracket - Round 3"
-})
+}))
 
 Repo.insert!(Match.changeset(%Match{}, %{
   winner_id: envyus.id,
@@ -212,14 +212,14 @@ Repo.insert!(Match.changeset(%Match{}, %{
 # Lower bracket
 # 1
 
-match_group = Repo.insert!(%MatchGroup{
+match_group = Repo.insert!(MatchGroup.changeset(%MatchGroup{}, %{
   tournament_id: tournament.id,
   team_one_id: one_shot.id,
   team_two_id: liquid.id,
   best_of: 3,
   started_at: Timex.to_datetime({{2016, 7, 10}, {00, 00, 00}}, "Europe/Paris"),
   stage: "Lower Bracket - Round 1"
-})
+}))
 
 Repo.insert!(Match.changeset(%Match{}, %{
   winner_id: liquid.id,
@@ -239,14 +239,14 @@ Repo.insert!(Match.changeset(%Match{}, %{
 
 # 2
 
-match_group = Repo.insert!(%MatchGroup{
+match_group = Repo.insert!(MatchGroup.changeset(%MatchGroup{}, %{
   tournament_id: tournament.id,
   team_one_id: splyce.id,
   team_two_id: code7.id,
   best_of: 3,
   started_at: Timex.to_datetime({{2016, 7, 10}, {01, 00, 00}}, "Europe/Paris"),
   stage: "Lower Bracket - Round 1"
-})
+}))
 
 Repo.insert!(Match.changeset(%Match{}, %{
   winner_id: code7.id,
@@ -266,14 +266,14 @@ Repo.insert!(Match.changeset(%Match{}, %{
 
 # 3
 
-match_group = Repo.insert!(%MatchGroup{
+match_group = Repo.insert!(MatchGroup.changeset(%MatchGroup{}, %{
   tournament_id: tournament.id,
   team_one_id: luminosity.id,
   team_two_id: liquid.id,
   best_of: 3,
   started_at: Timex.to_datetime({{2016, 7, 10}, {21, 00, 00}}, "Europe/Paris"),
   stage: "Lower Bracket - Round 2"
-})
+}))
 
 Repo.insert!(Match.changeset(%Match{}, %{
   winner_id: luminosity.id,
@@ -293,14 +293,14 @@ Repo.insert!(Match.changeset(%Match{}, %{
 
 # 4
 
-match_group = Repo.insert!(%MatchGroup{
+match_group = Repo.insert!(MatchGroup.changeset(%MatchGroup{}, %{
   tournament_id: tournament.id,
   team_one_id: ng_red.id,
   team_two_id: code7.id,
   best_of: 3,
   started_at: Timex.to_datetime({{2016, 7, 10}, {22, 00, 00}}, "Europe/Paris"),
   stage: "Lower Bracket - Round 2"
-})
+}))
 
 Repo.insert!(Match.changeset(%Match{}, %{
   winner_id: code7.id,
@@ -328,14 +328,14 @@ Repo.insert!(Match.changeset(%Match{}, %{
 
 # 5
 
-match_group = Repo.insert!(%MatchGroup{
+match_group = Repo.insert!(MatchGroup.changeset(%MatchGroup{}, %{
   tournament_id: tournament.id,
   team_one_id: luminosity.id,
   team_two_id: code7.id,
   best_of: 3,
   started_at: Timex.to_datetime({{2016, 7, 11}, {00, 00, 00}}, "Europe/Paris"),
   stage: "Lower Bracket - Round 3"
-})
+}))
 
 Repo.insert!(Match.changeset(%Match{}, %{
   winner_id: code7.id,
@@ -355,14 +355,14 @@ Repo.insert!(Match.changeset(%Match{}, %{
 
 # 6
 
-match_group = Repo.insert!(%MatchGroup{
+match_group = Repo.insert!(MatchGroup.changeset(%MatchGroup{}, %{
   tournament_id: tournament.id,
   team_one_id: cloud9.id,
   team_two_id: code7.id,
   best_of: 3,
   started_at: Timex.to_datetime({{2016, 7, 11}, {01, 00, 00}}, "Europe/Paris"),
   stage: "Lower Bracket - Round 4"
-})
+}))
 
 Repo.insert!(Match.changeset(%Match{}, %{
   winner_id: code7.id,

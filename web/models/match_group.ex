@@ -1,5 +1,6 @@
 defmodule KnockoutApi.MatchGroup do
   use KnockoutApi.Web, :model
+  use Timex
 
   schema "match_groups" do
     field :started_at, Timex.Ecto.DateTime
@@ -15,7 +16,7 @@ defmodule KnockoutApi.MatchGroup do
   end
 
   @required_fields ~w(tournament_id team_one_id team_two_id best_of stage)
-  @optional_fields ~w(start_at)
+  @optional_fields ~w(started_at)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -26,5 +27,13 @@ defmodule KnockoutApi.MatchGroup do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> convert_started_at_to_utc
+  end
+
+  defp convert_started_at_to_utc(changeset) do
+    case get_change(changeset, :started_at) do
+      nil -> changeset
+      started_at -> put_change(changeset, :started_at, Timex.Timezone.convert(started_at, "Etc/UTC"))
+    end
   end
 end
