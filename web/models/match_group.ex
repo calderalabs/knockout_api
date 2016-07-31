@@ -27,13 +27,5 @@ defmodule KnockoutApi.MatchGroup do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> convert_started_at_to_utc
-  end
-
-  defp convert_started_at_to_utc(changeset) do
-    case get_change(changeset, :started_at) do
-      nil -> changeset
-      started_at -> put_change(changeset, :started_at, Timex.Timezone.convert(started_at, "Etc/UTC"))
-    end
   end
 end

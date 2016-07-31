@@ -49,7 +49,7 @@ defmodule KnockoutApi.Mixfile do
       {:poison, "~> 2.1.0"},
       {:mellon, github: "calderalabs/mellon"},
       {:cors_plug, "~> 1.1"},
-      {:timex_ecto, "~> 3.0"}
+      {:timex_ecto, "~> 3.0.3"}
     ]
   end
 
