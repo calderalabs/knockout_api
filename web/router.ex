@@ -55,8 +55,7 @@ defmodule KnockoutApi.Router do
     if conn.assigns.current_user.admin do
       conn
     else
-      conn
-      |> halt()
+      halt(conn)
     end
   end
 end
