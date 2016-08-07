@@ -3,6 +3,7 @@ defmodule KnockoutApi.Router do
 
   pipeline :api do
     plug :accepts, ["json-api"]
+    plug JaSerializer.Deserializer
   end
 
   pipeline :authenticated do
@@ -11,6 +12,10 @@ defmodule KnockoutApi.Router do
 
   pipeline :optional_authentication do
     plug Mellon, validator: {KnockoutApi.Validation, :validate, []}, header: "authorization", block: false
+  end
+
+  pipeline :admin_authentication do
+    plug :authenticate_admin
   end
 
   scope "/", KnockoutApi do
@@ -30,10 +35,28 @@ defmodule KnockoutApi.Router do
     get "/followings", FollowingsController, :index
     post "/followings", FollowingsController, :create
     delete "/followings/:id", FollowingsController, :delete
-    post "/spoilers/", SpoilersController, :create
+    post "/spoilers", SpoilersController, :create
     post "/watchings", WatchingsController, :create
     delete "/watchings/:id", WatchingsController, :delete
     post "/likes", LikesController, :create
     delete "/likes/:id", LikesController, :delete
+  end
+
+  scope "/admin", KnockoutApi do
+    pipe_through :api
+    pipe_through :authenticated
+    pipe_through :admin_authentication
+
+    get "/tournaments", AdminTournamentsController, :index
+    post "/tournaments", AdminTournamentsController, :create
+  end
+
+  defp authenticate_admin(conn, _opts) do
+    if conn.assigns.current_user.admin do
+      conn
+    else
+      conn
+      |> halt()
+    end
   end
 end

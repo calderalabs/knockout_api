@@ -12,8 +12,8 @@ defmodule KnockoutApi.Tournament do
     timestamps
   end
 
-  @required_fields ~w(name game_id current_stage)
-  @optional_fields ~w()
+  @required_fields ~w(name game_id)
+  @optional_fields ~w(current_stage)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
