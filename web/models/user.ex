@@ -8,12 +8,13 @@ defmodule KnockoutApi.User do
     field :name, :string
     field :auth0_id, :string
     field :email, :string
+    field :admin, :boolean
 
     timestamps
   end
 
   @required_fields ~w(name email auth0_id)
-  @optional_fields ~w()
+  @optional_fields ~w(admin)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

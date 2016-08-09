@@ -32,6 +32,7 @@ defmodule KnockoutApi.Router do
     pipe_through :authenticated
 
     get "/users/:id", UsersController, :show
+    get "/admin/users/:id", UsersController, :show
     get "/followings", FollowingsController, :index
     post "/followings", FollowingsController, :create
     delete "/followings/:id", FollowingsController, :delete
@@ -52,7 +53,7 @@ defmodule KnockoutApi.Router do
   end
 
   defp authenticate_admin(conn, _opts) do
-    if conn.assigns.current_user.admin do
+    if Map.get(KnockoutApi.BaseController.current_user(conn), :admin) do
       conn
     else
       halt(conn)
