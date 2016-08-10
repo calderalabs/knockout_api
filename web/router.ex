@@ -49,6 +49,7 @@ defmodule KnockoutApi.Router do
     pipe_through :admin_authentication
 
     get "/tournaments", AdminTournamentsController, :index
+    get "/tournaments/:id", AdminTournamentsController, :show
     post "/tournaments", AdminTournamentsController, :create
     get "/teams", AdminTeamsController, :index
     post "/teams", AdminTeamsController, :create

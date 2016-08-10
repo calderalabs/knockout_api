@@ -4,7 +4,12 @@ defmodule KnockoutApi.AdminTournamentsController do
 
   def index(conn, _params) do
     tournaments = Repo.all(from t in Tournament)
-    conn |> json(KnockoutApi.AdminTournamentsView.format(tournaments, conn))
+    conn |> json(KnockoutApi.AdminBasicTournamentsView.format(tournaments, conn))
+  end
+
+  def show(conn, %{ "id" => id }) do
+    tournament = Repo.get!(Tournament, id) |> Repo.preload([match_groups: [:team_one, :team_two, matches: [:winner]]])
+    conn |> json(KnockoutApi.AdminTournamentsView.format(tournament, conn))
   end
 
   def create(conn, %{ "data" => data }) do
@@ -13,7 +18,7 @@ defmodule KnockoutApi.AdminTournamentsController do
 
     case Repo.insert(changeset) do
       {:ok, tournament} ->
-        data = tournament |> KnockoutApi.AdminTournamentsView.format(conn)
+        data = tournament |> KnockoutApi.AdminBasicTournamentsView.format(conn)
 
         conn
         |> put_status(201)
