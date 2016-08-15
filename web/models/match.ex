@@ -14,7 +14,7 @@ defmodule KnockoutApi.Match do
     timestamps
   end
 
-  @required_fields ~w(match_group_id number likes_count vod)a
+  @required_fields ~w(match_group_id number likes_count vod winner_id)a
 
   @doc """
   Creates a changeset based on the `model` and `params`.

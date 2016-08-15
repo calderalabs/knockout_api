@@ -3,14 +3,13 @@ defmodule KnockoutApi.AdminMatchGroupsController do
   use KnockoutApi.Web, :controller
 
   def update(conn, %{ "id" => id, "data" => data }) do
-    match_group = Repo.get!(MatchGroup, id) |> Repo.preload([:team_one, :team_two, matches: [:winner]])
+    match_group = Repo.get!(MatchGroup, id)
     attrs = JaSerializer.Params.to_attributes(data)
     changeset = MatchGroup.changeset(match_group, attrs)
-    IO.inspect(changeset)
 
     case Repo.update(changeset) do
       {:ok, match_group} ->
-        data = match_group |> KnockoutApi.AdminMatchGroupsView.format(conn)
+        data = match_group |> Repo.preload([:team_one, :team_two, matches: [:winner]]) |> KnockoutApi.AdminMatchGroupsView.format(conn)
 
         conn
         |> put_status(200)

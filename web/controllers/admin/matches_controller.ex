@@ -3,13 +3,13 @@ defmodule KnockoutApi.AdminMatchesController do
   use KnockoutApi.Web, :controller
 
   def update(conn, %{ "id" => id, "data" => data }) do
-    match = Repo.get!(Match, id) |> Repo.preload([:winner])
+    match = Repo.get!(Match, id)
     attrs = JaSerializer.Params.to_attributes(data)
     changeset = Match.changeset(match, attrs)
 
     case Repo.update(changeset) do
       {:ok, match} ->
-        data = match |> KnockoutApi.AdminMatchesView.format(conn)
+        data = match |> Repo.preload([:winner]) |> KnockoutApi.AdminMatchesView.format(conn)
 
         conn
         |> put_status(200)
