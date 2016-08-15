@@ -55,6 +55,8 @@ defmodule KnockoutApi.Router do
     get "/teams", AdminTeamsController, :index
     post "/teams", AdminTeamsController, :create
     patch "/teams/:id", AdminTeamsController, :update
+    patch "/match-groups/:id", AdminMatchGroupsController, :update
+    patch "/matches/:id", AdminMatchesController, :update
   end
 
   defp authenticate_admin(conn, _opts) do
