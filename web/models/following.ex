@@ -10,8 +10,7 @@ defmodule KnockoutApi.Following do
     timestamps
   end
 
-  @required_fields ~w(tournament_id user_id seen_at)
-  @optional_fields ~w()
+  @required_fields ~w(tournament_id user_id seen_at)a
 
   def new_matches_count(following) do
     case following.seen_at do
@@ -32,8 +31,9 @@ defmodule KnockoutApi.Following do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields)
+    |> validate_required(@required_fields)
   end
 end

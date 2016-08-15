@@ -19,7 +19,7 @@ defmodule KnockoutApi.Mixfile do
   def application do
     [mod: {KnockoutApi, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex, :httpoison, :tzdata]]
+                    :phoenix_ecto, :phoenix_pubsub, :postgrex, :httpoison, :tzdata]]
   end
 
   # Specifies which paths to compile per environment.
@@ -31,8 +31,9 @@ defmodule KnockoutApi.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.1.6"},
-      {:phoenix_ecto, "~> 2.0.2"},
+      {:phoenix, "~> 1.2.0"},
+      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix_ecto, "~> 3.0.1"},
       {:postgrex, ">= 0.11.1"},
       {:phoenix_html, "~> 2.3"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
@@ -44,7 +45,7 @@ defmodule KnockoutApi.Mixfile do
       {:timex, "~> 3.0.4"},
       {:tzdata, "~> 0.5.7"},
       {:exredis, "~> 0.2.4"},
-      {:ecto, "~> 1.1.2", [override: true]},
+      {:ecto, "~> 2.0.4"},
       {:joken, "~> 1.2.0"},
       {:poison, "~> 2.1.0"},
       {:mellon, github: "calderalabs/mellon"},
@@ -61,6 +62,7 @@ defmodule KnockoutApi.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"]]
+     "ecto.reset": ["ecto.drop", "ecto.setup"],
+     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end

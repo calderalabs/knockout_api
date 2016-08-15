@@ -16,7 +16,8 @@ config :knockout_api, KnockoutApi.Endpoint,
 
 config :knockout_api,
   api_timeout_in_ms: 30_000,
-  api_rate_limit_in_ms: 5_000
+  api_rate_limit_in_ms: 5_000,
+  ecto_repos: [KnockoutApi.Repo]
 
 # Configures Elixir's Logger
 config :logger, :console,

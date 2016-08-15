@@ -9,8 +9,7 @@ defmodule KnockoutApi.Like do
     timestamps
   end
 
-  @required_fields ~w(match_id user_id)
-  @optional_fields ~w()
+  @required_fields ~w(match_id user_id)a
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -18,9 +17,10 @@ defmodule KnockoutApi.Like do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields)
+    |> validate_required(@required_fields)
   end
 
   def create(changeset) do

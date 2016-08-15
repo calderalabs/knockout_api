@@ -15,8 +15,7 @@ defmodule KnockoutApi.MatchGroup do
     timestamps
   end
 
-  @required_fields ~w(tournament_id team_one_id team_two_id best_of stage)
-  @optional_fields ~w(started_at)
+  @required_fields ~w(tournament_id team_one_id team_two_id best_of stage)a
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -24,8 +23,9 @@ defmodule KnockoutApi.MatchGroup do
   If no params are provided, an invalid changeset is returned
   with no validation performed.
   """
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, @required_fields)
+    |> validate_required(@required_fields)
   end
 end
