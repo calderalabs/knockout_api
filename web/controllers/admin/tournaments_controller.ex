@@ -29,4 +29,23 @@ defmodule KnockoutApi.AdminTournamentsController do
         |> render(:errors, data: changeset)
     end
   end
+
+  def update(conn, %{ "id" => id, "data" => data }) do
+    team = Repo.get!(Tournament, id)
+    attrs = JaSerializer.Params.to_attributes(data)
+    changeset = Tournament.changeset(team, attrs)
+
+    case Repo.update(changeset) do
+      {:ok, tournament} ->
+        data = tournament |> KnockoutApi.AdminBasicTournamentsView.format(conn)
+
+        conn
+        |> put_status(200)
+        |> json(data)
+      {:error, changeset} ->
+        conn
+        |> put_status(422)
+        |> render(:errors, data: changeset)
+    end
+  end
 end
