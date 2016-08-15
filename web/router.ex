@@ -63,7 +63,10 @@ defmodule KnockoutApi.Router do
     if Map.get(KnockoutApi.BaseController.current_user(conn), :admin) do
       conn
     else
-      halt(conn)
+      conn
+      |> put_resp_content_type("application/json")
+      |> send_resp(404, Poison.encode!(%{error: "not found"}))
+      |> halt
     end
   end
 end
