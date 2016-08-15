@@ -12,7 +12,7 @@
 alias KnockoutApi.{Repo, Tournament, Match, MatchGroup, Team}
 use Timex
 
-tournament = Repo.insert!(%Tournament{ name: "Beyond The Summit Overwatch Cup #1", game_id: "overwatch", current_stage: "Final" })
+tournament = Repo.insert!(%Tournament{ name: "Beyond The Summit Overwatch Cup #1", game_id: "overwatch", current_stage: "Final", draft: false })
 envyus = Repo.insert!(%Team{ full_name: "EnVyUs", short_name: "EnVy", logo_url: "http://www.gosugamers.net/uploads/images/teams/13896-1461450854.jpeg" })
 one_shot = Repo.insert!(%Team{ full_name: "1SHOT", short_name: "1SHOT", logo_url: "http://www.gosugamers.net/uploads/images/teams/14955-1458752167.jpeg" })
 ng_red = Repo.insert!(%Team{ full_name: "Northern Gaming Red", short_name: "NG Red", logo_url: "http://www.gosugamers.net/uploads/images/teams/15093-1465630747.jpeg" })

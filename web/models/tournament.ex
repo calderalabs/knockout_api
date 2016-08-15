@@ -6,6 +6,7 @@ defmodule KnockoutApi.Tournament do
     field :name, :string
     field :game_id, :string
     field :current_stage, :string
+    field :draft, :boolean
     has_many :match_groups, KnockoutApi.MatchGroup
     has_many :followings, KnockoutApi.Following
 
@@ -20,8 +21,8 @@ defmodule KnockoutApi.Tournament do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, ~w(name game_id current_stage)a)
-    |> validate_required(~w(name game_id)a)
+    |> cast(params, ~w(name game_id current_stage draft)a)
+    |> validate_required(~w(name game_id draft)a)
   end
 
   def matches_count(tournament) do

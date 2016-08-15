@@ -5,7 +5,7 @@ defmodule KnockoutApi.TournamentsController do
   import KnockoutApi.BaseController
 
   def index(conn, _params) do
-    tournaments = Repo.all(from t in Tournament)
+    tournaments = Repo.all(from t in Tournament, where: t.draft == false)
     followings = User.filter_query_by_user(Ecto.assoc(tournaments, :followings), current_user(conn))
 
     render conn, data: tournaments, opts: %{ followings: followings }
