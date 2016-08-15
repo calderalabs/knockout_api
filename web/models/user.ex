@@ -13,8 +13,6 @@ defmodule KnockoutApi.User do
     timestamps
   end
 
-  @required_fields ~w(name email auth0_id)a
-
   @doc """
   Creates a changeset based on the `model` and `params`.
 
@@ -23,8 +21,8 @@ defmodule KnockoutApi.User do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields)
-    |> validate_required(@required_fields)
+    |> cast(params, ~w(name email auth0_id admin)a)
+    |> validate_required(~w(name email auth0_id)a)
   end
 
   def verify_token(jwt) do

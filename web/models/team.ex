@@ -9,8 +9,6 @@ defmodule KnockoutApi.Team do
     timestamps
   end
 
-  @required_fields ~w(full_name short_name)a
-
   @doc """
   Creates a changeset based on the `model` and `params`.
 
@@ -19,7 +17,7 @@ defmodule KnockoutApi.Team do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields)
-    |> validate_required(@required_fields)
+    |> cast(params, ~w(full_name short_name logo_url)a)
+    |> validate_required(~w(full_name short_name)a)
   end
 end

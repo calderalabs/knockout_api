@@ -12,8 +12,6 @@ defmodule KnockoutApi.Tournament do
     timestamps
   end
 
-  @required_fields ~w(name game_id)a
-
   @doc """
   Creates a changeset based on the `model` and `params`.
 
@@ -22,8 +20,8 @@ defmodule KnockoutApi.Tournament do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields)
-    |> validate_required(@required_fields)
+    |> cast(params, ~w(name game_id current_stage)a)
+    |> validate_required(~w(name game_id)a)
   end
 
   def matches_count(tournament) do

@@ -15,8 +15,6 @@ defmodule KnockoutApi.MatchGroup do
     timestamps
   end
 
-  @required_fields ~w(tournament_id team_one_id team_two_id best_of stage)a
-
   @doc """
   Creates a changeset based on the `model` and `params`.
 
@@ -25,7 +23,7 @@ defmodule KnockoutApi.MatchGroup do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields)
-    |> validate_required(@required_fields)
+    |> cast(params, ~w(tournament_id team_one_id team_two_id best_of stage started_at)a)
+    |> validate_required(~w(tournament_id team_one_id team_two_id best_of stage)a)
   end
 end

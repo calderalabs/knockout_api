@@ -14,8 +14,6 @@ defmodule KnockoutApi.Match do
     timestamps
   end
 
-  @required_fields ~w(match_group_id number likes_count vod winner_id)a
-
   @doc """
   Creates a changeset based on the `model` and `params`.
 
@@ -24,8 +22,8 @@ defmodule KnockoutApi.Match do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields)
-    |> validate_required(@required_fields)
+    |> cast(params, ~w(match_group_id number likes_count vod winner_id)a)
+    |> validate_required(~w(match_group_id number likes_count vod winner_id)a)
     |> validate_format(:vod, ~r/(youtube\.com\/embed)|(twitch.tv\/.*\/v\/)/)
   end
 end

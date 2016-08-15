@@ -10,8 +10,6 @@ defmodule KnockoutApi.Spoiler do
     timestamps
   end
 
-  @required_fields ~w(name user_id)a
-
   @doc """
   Creates a changeset based on the `model` and `params`.
 
@@ -20,7 +18,7 @@ defmodule KnockoutApi.Spoiler do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields)
-    |> validate_required(@required_fields)
+    |> cast(params, ~w(name user_id match_group_id match_id)a)
+    |> validate_required(~w(name user_id)a)
   end
 end

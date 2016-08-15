@@ -10,8 +10,6 @@ defmodule KnockoutApi.Following do
     timestamps
   end
 
-  @required_fields ~w(tournament_id user_id seen_at)a
-
   def new_matches_count(following) do
     case following.seen_at do
       nil -> 0
@@ -33,7 +31,7 @@ defmodule KnockoutApi.Following do
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields)
-    |> validate_required(@required_fields)
+    |> cast(params, ~w(tournament_id user_id seen_at)a)
+    |> validate_required(~w(tournament_id user_id seen_at)a)
   end
 end
