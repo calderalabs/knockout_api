@@ -1,6 +1,5 @@
 defmodule KnockoutApi.AdminMatchesView do
   use KnockoutApi.Web, :view
-  use JaSerializer.PhoenixView
 
   attributes [:match_group_id, :number, :vod]
 

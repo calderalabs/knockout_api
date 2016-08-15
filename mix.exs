@@ -18,7 +18,7 @@ defmodule KnockoutApi.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {KnockoutApi, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger,
+     applications: [:phoenix, :cowboy, :logger,
                     :phoenix_ecto, :phoenix_pubsub, :postgrex, :httpoison, :tzdata]]
   end
 
@@ -35,7 +35,6 @@ defmodule KnockoutApi.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.0.1"},
       {:postgrex, ">= 0.11.1"},
-      {:phoenix_html, "~> 2.3"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:cowboy, "~> 1.0"},
       {:ja_serializer, "~> 0.10.1"},

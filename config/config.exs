@@ -10,7 +10,7 @@ config :knockout_api, KnockoutApi.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
   secret_key_base: "VealOxdELYcm/JqJ1/pcagp9yhbAptR0xqIKQfW8sYQvwCNGkISi5Q4eENFYgtuA",
-  render_errors: [accepts: ~w(html json)],
+  render_errors: [accepts: ~w(json)],
   pubsub: [name: KnockoutApi.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

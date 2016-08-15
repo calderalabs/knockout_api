@@ -1,6 +1,5 @@
 defmodule KnockoutApi.MatchesView do
   use KnockoutApi.Web, :view
-  use JaSerializer.PhoenixView
 
   has_many :spoilers, include: true, serializer: KnockoutApi.SpoilersView
   has_many :watchings, include: true, serializer: KnockoutApi.WatchingsView

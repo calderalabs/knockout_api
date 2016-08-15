@@ -1,6 +1,5 @@
 defmodule KnockoutApi.MatchGroupsView do
   use KnockoutApi.Web, :view
-  use JaSerializer.PhoenixView
 
   attributes [:tournament_id, :started_at, :best_of, :stage]
 

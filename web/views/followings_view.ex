@@ -1,7 +1,6 @@
 defmodule KnockoutApi.FollowingsView do
   alias KnockoutApi.Following
   use KnockoutApi.Web, :view
-  use JaSerializer.PhoenixView
 
   has_one :tournament, include: true, serializer: KnockoutApi.TournamentsView
 

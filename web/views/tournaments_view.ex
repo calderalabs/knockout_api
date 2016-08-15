@@ -1,7 +1,6 @@
 defmodule KnockoutApi.TournamentsView do
   alias KnockoutApi.Tournament
   use KnockoutApi.Web, :view
-  use JaSerializer.PhoenixView
 
   attributes [:name, :game_id, :matches_count, :current_stage]
 

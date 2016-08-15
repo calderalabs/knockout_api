@@ -1,7 +1,6 @@
 defmodule KnockoutApi.BasicFollowingsView do
   alias KnockoutApi.Following
   use KnockoutApi.Web, :view
-  use JaSerializer.PhoenixView
 
   attributes [:tournament_id, :new_matches_count, :seen_at]
 
