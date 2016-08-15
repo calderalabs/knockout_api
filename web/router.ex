@@ -55,7 +55,9 @@ defmodule KnockoutApi.Router do
     get "/teams", AdminTeamsController, :index
     post "/teams", AdminTeamsController, :create
     patch "/teams/:id", AdminTeamsController, :update
+    post "/match-groups", AdminMatchGroupsController, :create
     patch "/match-groups/:id", AdminMatchGroupsController, :update
+    post "/matches", AdminMatchesController, :create
     patch "/matches/:id", AdminMatchesController, :update
   end
 
