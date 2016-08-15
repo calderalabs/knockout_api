@@ -25,5 +25,13 @@ defmodule KnockoutApi.MatchGroup do
     model
     |> cast(params, ~w(tournament_id team_one_id team_two_id best_of stage started_at)a)
     |> validate_required(~w(tournament_id team_one_id team_two_id best_of stage)a)
+    |> convert_started_at_to_utc
+  end
+
+  defp convert_started_at_to_utc(changeset) do
+    case get_change(changeset, :started_at) do
+      nil -> changeset
+      started_at -> put_change(changeset, :started_at, Timex.Timezone.convert(started_at, "Etc/UTC"))
+    end
   end
 end
