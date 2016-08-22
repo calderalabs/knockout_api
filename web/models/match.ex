@@ -24,8 +24,18 @@ defmodule KnockoutApi.Match do
     model
     |> cast(params, ~w(match_group_id number likes_count vod winner_id)a)
     |> validate_required(~w(match_group_id number winner_id)a)
-    |> validate_format(:vod, ~r/(youtube\.com\/embed)|(twitch.tv\/.*\/v\/)/)
+    |> validate_url(:vod, message: "is not a valid URL")
+    |> validate_format(:vod, ~r/(youtube\.com\/embed)|(twitch.tv\/.*\/v\/)/, message: "must contain \"youtube.com/embed\" or \"twitch.tv\"")
     |> unique_constraint(:number, name: :matches_number_match_group_id_index)
     |> validate_number(:number, greater_than: 0)
+  end
+
+  defp validate_url(changeset, field, options \\ []) do
+    validate_change changeset, field, fn _, url ->
+      case url |> String.to_char_list |> :http_uri.parse do
+        {:ok, _} -> []
+        {:error, msg} -> [{field, options[:message] || "invalid url: #{inspect msg}"}]
+      end
+    end
   end
 end
