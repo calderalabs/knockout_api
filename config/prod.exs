@@ -23,6 +23,10 @@ config :knockout_api, KnockoutApi.Repo,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true
 
+config :rollbax,
+  access_token: System.get_env("ROLLBAR_ACCESS_TOKEN"),
+  environment: "production"
+
 # Do not print debug messages in production
 config :logger, level: :info
 

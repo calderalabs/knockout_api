@@ -21,3 +21,8 @@ config :knockout_api, KnockoutApi.Repo,
   database: "knockout_api_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+  config :rollbax,
+    enabled: false,
+    access_token: "",
+    environment: "test"

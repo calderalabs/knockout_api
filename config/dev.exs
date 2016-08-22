@@ -47,3 +47,8 @@ config :exredis,
   db: 0,
   reconnect: :no_reconnect,
   max_queue: :infinity
+
+config :rollbax,
+  enabled: false,
+  access_token: "",
+  environment: "development"

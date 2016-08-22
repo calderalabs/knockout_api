@@ -1,5 +1,6 @@
 defmodule KnockoutApi.Router do
   use KnockoutApi.Web, :router
+  use Plug.ErrorHandler
 
   pipeline :api do
     plug :accepts, ["json-api"]
@@ -74,5 +75,9 @@ defmodule KnockoutApi.Router do
       |> send_resp(404, Poison.encode!(%{error: "not found"}))
       |> halt
     end
+  end
+
+  defp handle_errors(conn, %{kind: kind, reason: reason, stack: stacktrace}) do
+    Rollbax.report(kind, reason, stacktrace, %{params: conn.params})
   end
 end

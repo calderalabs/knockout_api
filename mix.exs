@@ -18,7 +18,7 @@ defmodule KnockoutApi.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {KnockoutApi, []},
-     applications: [:phoenix, :cowboy, :logger,
+     applications: [:phoenix, :cowboy, :logger, :rollbax,
                     :phoenix_ecto, :phoenix_pubsub, :postgrex, :httpoison, :tzdata]]
   end
 
@@ -49,7 +49,8 @@ defmodule KnockoutApi.Mixfile do
       {:poison, "~> 2.1.0"},
       {:mellon, github: "calderalabs/mellon"},
       {:cors_plug, "~> 1.1"},
-      {:timex_ecto, "~> 3.0.3"}
+      {:timex_ecto, "~> 3.0.3"},
+      {:rollbax, "~> 0.6"}
     ]
   end
 
