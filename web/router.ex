@@ -52,13 +52,17 @@ defmodule KnockoutApi.Router do
     get "/tournaments/:id", AdminTournamentsController, :show
     post "/tournaments", AdminTournamentsController, :create
     patch "/tournaments/:id", AdminTournamentsController, :update
+    delete "/tournaments/:id", AdminTournamentsController, :delete
     get "/teams", AdminTeamsController, :index
     post "/teams", AdminTeamsController, :create
     patch "/teams/:id", AdminTeamsController, :update
+    delete "/teams/:id", AdminTeamsController, :delete
     post "/match-groups", AdminMatchGroupsController, :create
     patch "/match-groups/:id", AdminMatchGroupsController, :update
+    delete "/match-groups/:id", AdminMatchGroupsController, :delete
     post "/matches", AdminMatchesController, :create
     patch "/matches/:id", AdminMatchesController, :update
+    delete "/matches/:id", AdminMatchesController, :delete
   end
 
   defp authenticate_admin(conn, _opts) do

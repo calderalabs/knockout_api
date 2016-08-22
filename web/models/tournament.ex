@@ -7,8 +7,8 @@ defmodule KnockoutApi.Tournament do
     field :game_id, :string
     field :current_stage, :string
     field :draft, :boolean
-    has_many :match_groups, KnockoutApi.MatchGroup
-    has_many :followings, KnockoutApi.Following
+    has_many :match_groups, KnockoutApi.MatchGroup, on_delete: :delete_all
+    has_many :followings, KnockoutApi.Following, on_delete: :delete_all
 
     timestamps
   end

@@ -9,8 +9,8 @@ defmodule KnockoutApi.MatchGroup do
     belongs_to :tournament, KnockoutApi.Tournament
     belongs_to :team_one, KnockoutApi.Team
     belongs_to :team_two, KnockoutApi.Team
-    has_many :matches, KnockoutApi.Match
-    has_many :spoilers, KnockoutApi.Spoiler
+    has_many :matches, KnockoutApi.Match, on_delete: :delete_all
+    has_many :spoilers, KnockoutApi.Spoiler, on_delete: :delete_all
 
     timestamps
   end

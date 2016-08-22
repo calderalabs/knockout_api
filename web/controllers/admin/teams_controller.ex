@@ -43,4 +43,10 @@ defmodule KnockoutApi.AdminTeamsController do
         |> render(:errors, data: changeset)
     end
   end
+
+  def delete(conn, %{ "id" => id }) do
+    team = Repo.get!(Team, id)
+    Repo.delete!(team)
+    send_resp conn, :no_content, ""
+  end
 end

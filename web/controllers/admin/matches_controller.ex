@@ -38,4 +38,10 @@ defmodule KnockoutApi.AdminMatchesController do
         |> render(:errors, data: changeset)
     end
   end
+
+  def delete(conn, %{ "id" => id }) do
+    match = Repo.get!(Match, id)
+    Repo.delete!(match)
+    send_resp conn, :no_content, ""
+  end
 end

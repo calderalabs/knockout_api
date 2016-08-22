@@ -48,4 +48,10 @@ defmodule KnockoutApi.AdminTournamentsController do
         |> render(:errors, data: changeset)
     end
   end
+
+  def delete(conn, %{ "id" => id }) do
+    tournament = Repo.get!(Tournament, id)
+    Repo.delete!(tournament)
+    send_resp conn, :no_content, ""
+  end
 end
