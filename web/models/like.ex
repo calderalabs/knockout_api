@@ -24,7 +24,7 @@ defmodule KnockoutApi.Like do
   def create(changeset) do
     changeset
     |> prepare_changes(fn changeset ->
-      assoc(changeset.model, :match)
+      assoc(changeset.data, :match)
       |> changeset.repo.update_all(inc: [likes_count: 1])
       changeset
     end)
@@ -34,7 +34,7 @@ defmodule KnockoutApi.Like do
   def destroy(like) do
     Ecto.Changeset.change(like)
     |> prepare_changes(fn changeset ->
-      assoc(changeset.model, :match)
+      assoc(changeset.data, :match)
       |> changeset.repo.update_all(inc: [likes_count: -1])
       changeset
     end)
