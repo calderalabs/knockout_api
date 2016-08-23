@@ -18,7 +18,7 @@ defmodule KnockoutApi.AdminTournamentsController do
 
     case Repo.insert(changeset) do
       {:ok, tournament} ->
-        data = tournament |> KnockoutApi.AdminBasicTournamentsView.format(conn)
+        data = tournament |> Repo.preload([match_groups: [:team_one, :team_two, matches: [:winner]]]) |> KnockoutApi.AdminBasicTournamentsView.format(conn)
 
         conn
         |> put_status(201)
@@ -37,7 +37,7 @@ defmodule KnockoutApi.AdminTournamentsController do
 
     case Repo.update(changeset) do
       {:ok, tournament} ->
-        data = tournament |> KnockoutApi.AdminBasicTournamentsView.format(conn)
+        data = tournament |> Repo.preload([match_groups: [:team_one, :team_two, matches: [:winner]]]) |> KnockoutApi.AdminBasicTournamentsView.format(conn)
 
         conn
         |> put_status(200)

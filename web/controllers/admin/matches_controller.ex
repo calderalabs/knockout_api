@@ -8,7 +8,7 @@ defmodule KnockoutApi.AdminMatchesController do
 
     case Repo.insert(changeset) do
       {:ok, match} ->
-        data = match |> KnockoutApi.AdminMatchesView.format(conn)
+        data = match |> Repo.preload([:winner]) |> KnockoutApi.AdminMatchesView.format(conn)
 
         conn
         |> put_status(201)
