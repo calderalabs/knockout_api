@@ -26,6 +26,7 @@ defmodule KnockoutApi.Match do
     |> validate_required(~w(match_group_id number winner_id)a)
     |> validate_url(:vod)
     |> validate_format(:vod, ~r/(youtube\.com\/embed)|(twitch.tv\/.*\/v\/)/, message: "must contain \"youtube.com/embed\" or \"twitch.tv\"")
+    |> unique_constraint(:vod)
     |> unique_constraint(:number, name: :matches_number_match_group_id_index)
     |> validate_number(:number, greater_than: 0)
   end
