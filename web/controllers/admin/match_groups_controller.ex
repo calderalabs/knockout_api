@@ -8,7 +8,7 @@ defmodule KnockoutApi.AdminMatchGroupsController do
 
     case Repo.insert(changeset) do
       {:ok, match_group} ->
-        data = match_group |> Repo.preload([:team_one, :team_two, matches: [:winner]]) |> KnockoutApi.AdminMatchesView.format(conn)
+        data = match_group |> Repo.preload([:team_one, :team_two, matches: [:winner]]) |> KnockoutApi.AdminMatchGroupsView.format(conn)
 
         conn
         |> put_status(201)
